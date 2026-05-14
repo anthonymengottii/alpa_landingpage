@@ -11,13 +11,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(env.BASE_URL),
   title: {
-    default: "Alpa | Run your business smarter",
+    default: "Alpa | Administre seu negócio de forma mais inteligente",
     template: "%s | Alpa",
   },
   description:
     "A Alpa oferece processamento de pagamentos online, além de ferramentas financeiras que atendem empresas de todos os tamanhos. Receba pagamentos, faça repasses e automatize suas finanças para acelerar crescimento do seu negócio.",
   openGraph: {
-    title: "Alpa | Run your business smarter",
+    title: "Alpa | Administre seu negócio de forma mais inteligente",
     description:
       "A Alpa oferece processamento de pagamentos online, além de ferramentas financeiras que atendem empresas de todos os tamanhos. Receba pagamentos, faça repasses e automatize suas finanças para acelerar crescimento do seu negócio.",
     url: env.BASE_URL,
