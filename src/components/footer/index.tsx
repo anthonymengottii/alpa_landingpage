@@ -2,16 +2,14 @@ import { DC } from "@/assets/svg/dc";
 import { Instragram } from "@/assets/svg/instragram";
 import { Linkedin } from "@/assets/svg/linkedin";
 import { Logo } from "@/assets/svg/logo";
-import Image from "next/image";
 import Link from "next/link";
 import { PolicyAndSupport } from "./policy-and-support";
 
-import FooterBannerMobile from "@/assets/footer-banner-mobile.png";
-import FooterBanner from "@/assets/footer-banner.png";
+import { FooterBannerImages } from "./footer-banner";
 
 export function Footer() {
   return (
-    <footer className="relative ">
+    <footer className="relative overflow-hidden">
       <div className="max-w-7xl w-full mx-auto px-6 pb-18 pt-24">
         <div className="flex flex-col md:flex-row gap-12 md:gap-44 mb-16 md:mb-56">
           <div className="flex flex-col items-center md:items-start">
@@ -61,23 +59,7 @@ export function Footer() {
         </div>
       </div>
 
-      <Image
-        src={FooterBanner}
-        alt=""
-        width={1920}
-        height={600}
-        className="hidden opacity-20 md:flex absolute top-0  right-0 h-full bottom-0 -z-[1] lg:opacity-60 object-right object-cover 2xl:object-fill"
-        aria-hidden="true"
-      />
-
-      <Image
-        src={FooterBannerMobile}
-        alt=""
-        width={768}
-        height={600}
-        className="absolute top-0 h-full left-0 w-full right-0  bottom-0 -z-[2] md:hidden opacity-60"
-        aria-hidden="true"
-      />
+      <FooterBannerImages />
     </footer>
   );
 }
