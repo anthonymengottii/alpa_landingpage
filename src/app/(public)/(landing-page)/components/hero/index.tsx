@@ -6,8 +6,8 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <main className="relative w-full bg-accent">
-      <div className="absolute top-0 w-full pt-20 md:pt-32 ">
+    <main className="relative w-full bg-accent min-h-[620px] md:min-h-0">
+      <div className="absolute top-0 w-full pt-20 md:pt-32 z-10">
         <div className="w-full max-w-7xl mx-auto px-6">
           <div className=" flex flex-col items-center gap-4 justify-center max-w-80  md:max-w-[550px] mx-auto md:items-start md:mx-0">
             <span className="font-semibold">Vem pra a Alpa!</span>
@@ -42,7 +42,7 @@ export function Hero() {
         width={1920}
         height={788}
         alt="Banner principal da Alpa - Solução de pagamentos online"
-        className="md:hidden -z-10 h-[812px] w-full object-cover object-top"
+        className="md:hidden absolute inset-0 w-full h-full object-cover object-bottom z-0"
         draggable={false}
         priority
       />
