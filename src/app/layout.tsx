@@ -21,8 +21,24 @@ export const metadata: Metadata = {
     description:
       "A Alpa oferece processamento de pagamentos online, além de ferramentas financeiras que atendem empresas de todos os tamanhos. Receba pagamentos, faça repasses e automatize suas finanças para acelerar crescimento do seu negócio.",
     url: env.BASE_URL,
+    siteName: "Alpa",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Alpa | Administre seu negócio de forma mais inteligente",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alpa | Administre seu negócio de forma mais inteligente",
+    description:
+      "A Alpa oferece processamento de pagamentos online, além de ferramentas financeiras que atendem empresas de todos os tamanhos. Receba pagamentos, faça repasses e automatize suas finanças para acelerar crescimento do seu negócio.",
+    images: ["/og-image.png"],
   },
 };
 

@@ -42,7 +42,7 @@ export function Hero() {
         width={1920}
         height={788}
         alt="Banner principal da Alpa - Solução de pagamentos online"
-        className="md:hidden -z-10 h-[812px] w-full object-cover"
+        className="md:hidden -z-10 h-[812px] w-full object-cover object-top"
         draggable={false}
         priority
       />
