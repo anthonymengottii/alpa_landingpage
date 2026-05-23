@@ -6,46 +6,66 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <main className="relative w-full bg-accent min-h-[620px] md:min-h-0">
-      <div className="absolute top-0 w-full pt-20 md:pt-32 z-10">
-        <div className="w-full max-w-7xl mx-auto px-6">
-          <div className=" flex flex-col items-center gap-4 justify-center max-w-80  md:max-w-[550px] mx-auto md:items-start md:mx-0">
+    <main className="relative w-full bg-accent md:min-h-0">
+      {/* Mobile layout */}
+      <div className="md:hidden flex flex-col">
+        <div className="pt-20 pb-6 px-6">
+          <div className="flex flex-col items-center gap-4 justify-center max-w-80 mx-auto">
             <span className="font-semibold">Vem pra a Alpa!</span>
-            <h1 className="text-[30px] sm:text-4xl leading-7 md:leading-12 md:text-5xl font-bold lg:leading-14 text-center md:text-start lg:text-6xl">
+            <h1 className="text-[30px] sm:text-4xl leading-7 font-bold text-center">
               Solução real pra quem quer performance real.
             </h1>
-            <p className="text-center md:text-start text-sm md:text-base">
+            <p className="text-center text-sm">
               A Alpa é a solução ideal para quem busca rapidez e segurança nas
               transações financeiras.
             </p>
-
             <CtaButton href="https://app.usealpa.com/register">
               <span className="text-sm font-bold">Quero criar minha conta</span>
               <ArrowUpRight className="size-5 stroke-icon stroke-2 group-hover:stroke-primary" />
             </CtaButton>
           </div>
         </div>
+        <Image
+          src={BannerMobile}
+          width={1920}
+          height={788}
+          alt="Banner principal da Alpa - Solução de pagamentos online"
+          className="w-full object-cover"
+          draggable={false}
+          priority
+        />
       </div>
 
-      <Image
-        src={Banner}
-        width={1920}
-        height={788}
-        className="hidden md:flex  h-[812px] object-cover object-[70%_70%]"
-        alt="Banner principal da Alpa - Solução de pagamentos online"
-        draggable={false}
-        priority
-      />
-
-      <Image
-        src={BannerMobile}
-        width={1920}
-        height={788}
-        alt="Banner principal da Alpa - Solução de pagamentos online"
-        className="md:hidden absolute inset-0 w-full h-full object-cover object-[50%_95%] z-0"
-        draggable={false}
-        priority
-      />
+      {/* Desktop layout */}
+      <div className="hidden md:block">
+        <div className="absolute top-0 w-full pt-32 z-10">
+          <div className="w-full max-w-7xl mx-auto px-6">
+            <div className="flex flex-col items-center gap-4 justify-center max-w-[550px] md:items-start md:mx-0">
+              <span className="font-semibold">Vem pra a Alpa!</span>
+              <h1 className="text-4xl leading-12 md:text-5xl font-bold lg:leading-14 md:text-start lg:text-6xl">
+                Solução real pra quem quer performance real.
+              </h1>
+              <p className="md:text-start text-base">
+                A Alpa é a solução ideal para quem busca rapidez e segurança nas
+                transações financeiras.
+              </p>
+              <CtaButton href="https://app.usealpa.com/register">
+                <span className="text-sm font-bold">Quero criar minha conta</span>
+                <ArrowUpRight className="size-5 stroke-icon stroke-2 group-hover:stroke-primary" />
+              </CtaButton>
+            </div>
+          </div>
+        </div>
+        <Image
+          src={Banner}
+          width={1920}
+          height={788}
+          className="h-[812px] object-cover object-[70%_70%]"
+          alt="Banner principal da Alpa - Solução de pagamentos online"
+          draggable={false}
+          priority
+        />
+      </div>
     </main>
   );
 }
