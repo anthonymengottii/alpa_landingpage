@@ -14,6 +14,7 @@ export function FooterBannerImages() {
           viewBox="0 0 1921 644"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMaxYMid slice"
           className="w-full h-full opacity-20 lg:opacity-60 object-right object-cover pointer-events-none"
           initial="hidden"
           whileInView="visible"

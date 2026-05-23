@@ -10,7 +10,7 @@ import Link from "next/link";
 export function GetStarted() {
   return (
     <section className="my-30 lg:my-52">
-      <div className="relative flex flex-col items-center gap-7 pt-16 lg:pb-44 lg:flex-row lg:justify-between bg-primary px-6 lg:px-12 max-w-7xl mx-auto xl:rounded-3xl overflow-hidden lg:overflow-visible">
+      <div className="relative flex flex-col items-center gap-7 pt-16 lg:pb-44 lg:flex-row lg:justify-between bg-primary px-6 lg:px-12 max-w-7xl mx-auto xl:rounded-3xl overflow-visible">
         <div className="flex flex-col items-center lg:max-w-80 lg:items-start">
           <LogoIcon className="size-7 [&_path]:fill-white" />
           <span className="text-base font-semibold mb-3 mt-[59px] text-background">
@@ -40,7 +40,7 @@ export function GetStarted() {
         <Image
           src={CellPhone}
           alt="cell phone"
-          className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-1/2 max-w-60 xl:max-w-full -mb-8"
+          className="relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-1/2 max-w-60 xl:max-w-full -mb-8"
         />
       </div>
     </section>

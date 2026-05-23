@@ -24,6 +24,7 @@ export function RequestFees() {
         viewBox="0 0 1921 788"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0 w-full h-[788px] object-cover pointer-events-none"
         initial="hidden"
         whileInView="visible"
