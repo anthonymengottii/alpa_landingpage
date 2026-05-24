@@ -37,7 +37,7 @@ export function Hero() {
         priority
       />
 
-      <div className="md:hidden absolute inset-0 overflow-hidden z-0">
+      <div className="md:hidden absolute inset-0 overflow-hidden z-0 [transform:translateZ(0)]">
         <Image
           src={BannerMobile}
           width={1920}
