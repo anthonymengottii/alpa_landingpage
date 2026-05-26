@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { Plus } from "lucide-react";
 
-const doubts = [
+export const doubts = [
   {
     question: "O que é gateway de pagamento",
     answer:

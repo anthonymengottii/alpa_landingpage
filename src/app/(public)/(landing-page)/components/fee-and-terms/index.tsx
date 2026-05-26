@@ -15,7 +15,7 @@ const items = [
   {
     image: {
       src: CreditCard,
-      alt: "",
+      alt: "Ícone de cartão de crédito representando a taxa de 5,99% para recebimento em D+2",
     },
     title: "Cartão de crédito D+2",
     content: "Receba em D+2 com apenas 5,99%",
@@ -23,7 +23,7 @@ const items = [
   {
     image: {
       src: Billet,
-      alt: "",
+      alt: "Ícone de boleto bancário representando recebimento em D+0",
     },
     title: "Boleto D+0",
     content: "Recebimento na mesma hora",
@@ -31,7 +31,7 @@ const items = [
   {
     image: {
       src: Pix,
-      alt: "",
+      alt: "Ícone do PIX representando a taxa de 3,99% para liquidação instantânea em D+0",
     },
     title: "PIX D+0",
     content: "Liquidação instantânea por apenas 3,99%",

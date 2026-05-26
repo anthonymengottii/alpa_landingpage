@@ -1,0 +1,41 @@
+# Alpa – Robôs de busca tradicionais
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://usealpa.com/sitemap.xml
+
+# ──────────────────────────────────────────────
+# Bots de IA generativa — todos são bem-vindos
+# ──────────────────────────────────────────────
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+
+# Google AI (AI Overviews / Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl (dataset usado por muitos LLMs)
+User-agent: CCBot
+Allow: /

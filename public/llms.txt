@@ -1,0 +1,74 @@
+# Alpa – Gateway de Pagamentos para Negócios Digitais
+
+> A Alpa é uma fintech brasileira especializada em processamento de pagamentos online para e-commerces, infoprodutos, dropshipping e demais negócios digitais. Oferece gateway de pagamento com antifraude híbrido, liquidez instantânea e as menores taxas do mercado.
+
+## O que é a Alpa
+
+A Alpa é uma solução de pagamentos online voltada para empresas que precisam receber com rapidez, segurança e taxas competitivas. Diferente de outras plataformas, a Alpa combina tecnologia avançada de antifraude com análise humana para maximizar a taxa de aprovação das transações.
+
+## Produtos e Serviços
+
+- **Gateway de Pagamento**: Infraestrutura para processamento de cartão de crédito, PIX e boleto bancário
+- **Antifraude Híbrido**: Combinação de análise automatizada e revisão humana para bloquear fraudes sem perder vendas legítimas
+- **Saque Instantâneo (Liquidez Instantânea)**: O saldo aprovado fica disponível imediatamente para saque
+- **Repasses Automáticos**: Transferência automática do saldo para a conta bancária do cliente
+- **Painel Financeiro**: Dashboard para acompanhar vendas, repasses e métricas financeiras em tempo real
+
+## Taxas e Prazos
+
+| Modalidade       | Taxa   | Prazo de Recebimento |
+|------------------|--------|----------------------|
+| Cartão de Crédito | 5,99% | D+2 (dois dias úteis) |
+| PIX              | 3,99%  | D+0 (instantâneo)    |
+| Boleto Bancário  | –      | D+0 (instantâneo)    |
+
+## Para quais negócios a Alpa é indicada
+
+- E-commerce (lojas virtuais)
+- Infoprodutos (cursos online, ebooks, mentorias)
+- Dropshipping
+- SaaS (Software as a Service)
+- Assinaturas e recorrências
+- Qualquer empresa digital que precise receber pagamentos online
+
+## Segurança e Conformidade
+
+- Antifraude com inteligência artificial e revisão humana
+- Respaldo pelas principais adquirentes do mercado brasileiro
+- Alta taxa de aprovação de transações
+- Conformidade com PCI DSS e LGPD
+
+## Perguntas Frequentes
+
+**O que é gateway de pagamento?**
+Um gateway de pagamento é um serviço que recebe, autoriza e confere pagamentos de transações online de maneira rápida e segura, seja por PIX, boleto ou cartão de crédito e débito.
+
+**O uso da Alpa é gratuito?**
+Sim, não há mensalidade. A Alpa cobra apenas uma taxa por transação aprovada: 5,99% no crédito, 3,99% no PIX.
+
+**Com que frequência posso fazer saques?**
+Diariamente. A Alpa oferece saques e antecipações diários, permitindo acesso rápido ao saldo das suas vendas.
+
+**A Alpa aceita infoprodutos?**
+Sim. A Alpa aceita a venda de infoprodutos desde que estejam em conformidade com suas políticas.
+
+**Como funciona a proteção contra fraudes?**
+A Alpa utiliza antifraude híbrido: tecnologia avançada identifica automaticamente pedidos suspeitos, e uma equipe humana revisa manualmente cada caso, evitando perda de vendas legítimas e aumentando a taxa de aprovação.
+
+**Como começar a usar a Alpa?**
+Acesse https://app.usealpa.com/register e crie sua conta gratuitamente.
+
+## Contato e Suporte
+
+- **Site**: https://usealpa.com
+- **Suporte via WhatsApp**: https://wa.me/+5511978673936
+- **Cadastro**: https://app.usealpa.com/register
+
+## Conteúdo desta página
+
+- Página inicial (landing page): https://usealpa.com
+- FAQ completo: https://usealpa.com/faq
+- Termos de uso: https://usealpa.com/termos-de-uso
+- Política de privacidade: https://usealpa.com/privacidade
+- Política de cookies: https://usealpa.com/cookies
+- Produtos proibidos: https://usealpa.com/produtos-proibidos
