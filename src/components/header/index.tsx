@@ -13,18 +13,27 @@ export const links = [
   {
     label: "Home",
     href: "/",
+    external: false,
   },
   {
     label: "Benefícios",
     href: "/#beneficios",
+    external: false,
   },
   {
     label: "Recursos",
     href: "/#recursos",
+    external: false,
   },
   {
     label: "Taxas",
     href: "/#taxas",
+    external: false,
+  },
+  {
+    label: "Documentação",
+    href: "https://docs.usealpa.com/pages/introduction",
+    external: true,
   },
 ] as const;
 
@@ -51,17 +60,24 @@ export function Header() {
         </Link>
 
         <ul className="hidden lg:flex items-center gap-9">
-          {links.map(({ href, label }) => (
+          {links.map(({ href, label, external }) => (
             <li
               key={label}
               className="relative text-base font-normal "
               onClick={() => {
-                setLinkActive(label);
+                if (!external) setLinkActive(label);
               }}
             >
-              <Link href={href}>{label}</Link>
+              <Link
+                href={href}
+                {...(external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+              >
+                {label}
+              </Link>
 
-              {label === linkActive && (
+              {!external && label === linkActive && (
                 <motion.span
                   className="absolute top-8 left-0  h-1 bg-primary"
                   animate={{

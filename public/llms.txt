@@ -13,6 +13,7 @@ A Alpa é uma solução de pagamentos online voltada para empresas que precisam 
 - **Saque Instantâneo (Liquidez Instantânea)**: O saldo aprovado fica disponível imediatamente para saque
 - **Repasses Automáticos**: Transferência automática do saldo para a conta bancária do cliente
 - **Painel Financeiro**: Dashboard para acompanhar vendas, repasses e métricas financeiras em tempo real
+- **Documentação Técnica (API)**: Guia completo de integração da API da Alpa disponível em https://docs.usealpa.com/pages/introduction
 
 ## Taxas e Prazos
 
@@ -68,6 +69,7 @@ Acesse https://app.usealpa.com/register e crie sua conta gratuitamente.
 
 - Página inicial (landing page): https://usealpa.com
 - FAQ completo: https://usealpa.com/faq
+- **Documentação técnica (API)**: https://docs.usealpa.com/pages/introduction
 - Termos de uso: https://usealpa.com/termos-de-uso
 - Política de privacidade: https://usealpa.com/privacidade
 - Política de cookies: https://usealpa.com/cookies

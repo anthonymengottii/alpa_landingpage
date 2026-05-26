@@ -39,11 +39,14 @@ export function MenuMobile() {
       <SheetContent className="flex flex-col pt-16 border-none px-4 pb-24">
         <SheetTitle className="sr-only">Menu</SheetTitle>
         <ul className="flex flex-col gap-4">
-          {links.map(({ label, href }) => (
-            <li className="w-full" key={label} onClick={() => setIsOpen(false)}>
+          {links.map(({ label, href, external }) => (
+            <li className="w-full" key={label} onClick={() => !external && setIsOpen(false)}>
               <Link
                 href={href}
                 className="font-semibold text-lg w-full flex border-b border-[#363636] py-4"
+                {...(external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
               >
                 {label}
               </Link>
