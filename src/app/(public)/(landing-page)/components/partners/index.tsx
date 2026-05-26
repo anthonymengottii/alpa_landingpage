@@ -1,11 +1,10 @@
 "use client";
+import { useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 
@@ -35,6 +34,16 @@ const brands = [
 ];
 
 export function Partners() {
+  const plugin = useRef(
+    AutoScroll({
+      direction: "forward",
+      stopOnFocusIn: false,
+      stopOnMouseEnter: false,
+      stopOnInteraction: false,
+      speed: 0.7,
+    })
+  );
+
   return (
     <Carousel
       opts={{
@@ -43,15 +52,7 @@ export function Partners() {
         watchDrag: false,
       }}
       className="w-full pt-16 pb-20 "
-      plugins={[
-        AutoScroll({
-          direction: "forward",
-          stopOnFocusIn: false,
-          stopOnMouseEnter: false,
-          stopOnInteraction: false,
-          speed: 0.7,
-        }),
-      ]}
+      plugins={[plugin.current]}
     >
       <CarouselContent>
         {brands.map(({ component: Brand, label }, index) => (
