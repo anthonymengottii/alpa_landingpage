@@ -16,14 +16,7 @@ import { Mastercard } from "@/assets/svg/mastercard";
 import { Pix } from "@/assets/svg/pix";
 import { Visa } from "@/assets/svg/visa";
 
-const brands = [
-  { component: Inter, label: "inter" },
-  { component: Bradesco, label: "Bradesco" },
-  { component: Mastercard, label: "Mastercard" },
-  { component: BancoDoBrasil, label: "BancoDoBrasil" },
-  { component: Pix, label: "Pix" },
-  { component: Visa, label: "Visa" },
-  { component: Elo, label: "Elo" },
+const baseBrands = [
   { component: Inter, label: "inter" },
   { component: Bradesco, label: "Bradesco" },
   { component: Mastercard, label: "Mastercard" },
@@ -32,6 +25,9 @@ const brands = [
   { component: Visa, label: "Visa" },
   { component: Elo, label: "Elo" },
 ];
+
+// Repeat enough times to guarantee overflow on ultrawide (3440px+)
+const brands = Array.from({ length: 6 }, () => baseBrands).flat();
 
 export function Partners() {
   const plugin = useRef(
