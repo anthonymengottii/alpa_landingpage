@@ -93,7 +93,7 @@ export function Header() {
 
       <div className="hidden lg:flex items-center gap-2">
         <Link
-          href="https://app.usealpa.com/login"
+          href="https://app.usealpa.com/"
           className="flex items-center gap-2 border-2 border-foreground rounded-full px-6 py-3 h-max w-max hover:bg-foreground transition-all duration-300 group"
         >
           <span className="text-sm font-bold group-hover:text-foreground-invert transition-all duration-300 ">
@@ -102,7 +102,7 @@ export function Header() {
           <ArrowUpRight className="size-5 stroke-2 stroke-icon group-hover:stroke-primary" />
         </Link>
         <Link
-          href="https://app.usealpa.com/register"
+          href="https://app.usealpa.com/registro"
           className="flex items-center gap-2 border-background border-2 rounded-full px-6 py-3 h-max w-max bg-background hover:bg-primary group transition-all duration-300 hover:border-primary"
         >
           <span className="text-sm font-bold">Criar conta</span>

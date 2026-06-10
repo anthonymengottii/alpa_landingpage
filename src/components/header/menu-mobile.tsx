@@ -56,14 +56,14 @@ export function MenuMobile() {
 
         <div className="flex flex-col items-center justify-end gap-4 w-full flex-1">
           <Link
-            href="https://app.usealpa.com/login"
+            href="https://app.usealpa.com/"
             className="flex items-center justify-center  gap-2 border-2 border-foreground rounded-full px-6 py-3 h-max hover:bg-primary transition-all duration-300 hover:border-primary w-full"
           >
             <span className="text-sm font-bold">Fazer login</span>
             <ArrowUpRight className="size-5 stroke-2 stroke-foreground" />
           </Link>
           <Link
-            href="https://app.usealpa.com/register"
+            href="https://app.usealpa.com/registro"
             className="flex items-center justify-center gap-2 border-background border-2 rounded-full px-6 py-3 h-max hover:bg-foreground hover:text-foreground-invert w-full bg-primary"
           >
             <span className="text-sm font-bold">Criar conta</span>

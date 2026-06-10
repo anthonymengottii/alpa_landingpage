@@ -37,7 +37,7 @@ export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
           {card.data.description}
         </p>
 
-        <CtaButton href="https://app.usealpa.com/register" variant="primary">
+        <CtaButton href="https://app.usealpa.com/registro" variant="primary">
           <span className="text-sm font-bold group-hover:text-foreground-invert">
             {card.data.callToAction}
           </span>

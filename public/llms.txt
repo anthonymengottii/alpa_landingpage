@@ -57,13 +57,13 @@ Sim. A Alpa aceita a venda de infoprodutos desde que estejam em conformidade com
 A Alpa utiliza antifraude híbrido: tecnologia avançada identifica automaticamente pedidos suspeitos, e uma equipe humana revisa manualmente cada caso, evitando perda de vendas legítimas e aumentando a taxa de aprovação.
 
 **Como começar a usar a Alpa?**
-Acesse https://app.usealpa.com/register e crie sua conta gratuitamente.
+Acesse https://app.usealpa.com/registro e crie sua conta gratuitamente.
 
 ## Contato e Suporte
 
 - **Site**: https://usealpa.com
 - **Suporte via WhatsApp**: https://wa.me/+5511978673936
-- **Cadastro**: https://app.usealpa.com/register
+- **Cadastro**: https://app.usealpa.com/registro
 
 ## Conteúdo desta página
 
