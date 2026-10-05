@@ -1,7 +1,10 @@
+"use client";
+
 import BannerMobile from "@/assets/banner-mobile.png";
 import Banner from "@/assets/banner.png";
 import { CtaButton } from "@/components/cta-button";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 
 export function Hero() {
@@ -9,7 +12,12 @@ export function Hero() {
     <main className="relative w-full bg-accent min-h-[700px] md:min-h-0">
       <div className="absolute top-0 w-full pt-20 md:pt-20 lg:pt-24 xl:pt-32 z-10">
         <div className="w-full max-w-7xl mx-auto px-6">
-          <div className="flex flex-col items-center gap-4 justify-center max-w-80 md:max-w-[550px] mx-auto md:items-start md:mx-0">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center gap-4 justify-center max-w-80 md:max-w-[550px] mx-auto md:items-start md:mx-0"
+          >
             <span className="font-semibold">Vem pra a Alpa!</span>
             <h1 className="text-[30px] sm:text-4xl leading-7 md:leading-12 md:text-5xl font-bold lg:leading-14 text-center md:text-start lg:text-6xl">
               Solução real pra quem quer performance real.
@@ -19,11 +27,19 @@ export function Hero() {
               transações financeiras.
             </p>
 
-            <CtaButton href="https://app.usealpa.com/registro">
-              <span className="text-sm font-bold">Quero criar minha conta</span>
-              <ArrowUpRight className="size-5 stroke-icon stroke-2 group-hover:stroke-primary" />
-            </CtaButton>
-          </div>
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <CtaButton href="https://app.usealpa.com/registro">
+                <span className="text-sm font-bold">
+                  Quero criar minha conta
+                </span>
+                <ArrowUpRight className="size-5 stroke-icon stroke-2 group-hover:stroke-primary" />
+              </CtaButton>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
 

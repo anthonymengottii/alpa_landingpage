@@ -1,3 +1,5 @@
+"use client";
+
 import { Section } from "@/components/section";
 
 import Hope from "@/assets/hope.png";
@@ -7,6 +9,7 @@ import { Cryptography } from "@/assets/svg/cryptography";
 import { Cubes } from "@/assets/svg/cubes";
 import { Data } from "@/assets/svg/data";
 import { Persons } from "@/assets/svg/persons";
+import { Reveal } from "@/components/motion/reveal";
 
 import {
   Card,
@@ -58,7 +61,11 @@ const benefits = [
 export function WhyUsersLoveAlpa() {
   return (
     <Section className="pt-20 pb-32 md:pt-60 grid grid-cols-1 xl:grid-cols-[413px_1fr] gap-10">
-      <div className="flex flex-col items-center justify-center xl:items-start gap-4 mb-10 mx-auto">
+      <Reveal
+        x={-32}
+        y={0}
+        className="flex flex-col items-center justify-center xl:items-start gap-4 mb-10 mx-auto"
+      >
         <span className="font-semibold text-primary text-center md:text-start">
           Escale sua operação sem limites
         </span>
@@ -69,28 +76,27 @@ export function WhyUsersLoveAlpa() {
           Revolucione sua forma de vender online.
         </span>
 
-        <Image 
-          src={Hope} 
-          alt="Ilustração representando os benefícios da Alpa" 
+        <Image
+          src={Hope}
+          alt="Ilustração representando os benefícios da Alpa"
         />
-      </div>
+      </Reveal>
 
       <div className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] self-center align-baseline items-center gap-8 xl:gap-2">
-        {benefits.map(({ icon: Icon, title, description }) => (
-          <Card
-            className="w-full p-10 rounded-[40px] border-0 gap-0 h-full"
-            key={title}
-          >
-            <CardHeader className="flex flex-col gap-6 p-0">
-              <figure className="flex items-center justify-center size-12 rounded-2xl bg-primary">
-                <Icon />
-              </figure>
-              <CardTitle className="font-bold">{title}</CardTitle>
-              <CardDescription className="text-foreground text-base">
-                {description}
-              </CardDescription>
-            </CardHeader>
-          </Card>
+        {benefits.map(({ icon: Icon, title, description }, index) => (
+          <Reveal key={title} delay={(index % 3) * 0.1}>
+            <Card className="w-full p-10 rounded-[40px] border-0 gap-0 h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+              <CardHeader className="flex flex-col gap-6 p-0">
+                <figure className="flex items-center justify-center size-12 rounded-2xl bg-primary">
+                  <Icon />
+                </figure>
+                <CardTitle className="font-bold">{title}</CardTitle>
+                <CardDescription className="text-foreground text-base">
+                  {description}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Reveal>
         ))}
       </div>
     </Section>

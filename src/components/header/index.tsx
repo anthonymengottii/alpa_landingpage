@@ -70,6 +70,7 @@ export function Header() {
             >
               <Link
                 href={href}
+                className="transition-opacity duration-300 hover:opacity-70"
                 {...(external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
@@ -94,7 +95,7 @@ export function Header() {
       <div className="hidden lg:flex items-center gap-2">
         <Link
           href="https://app.usealpa.com/"
-          className="flex items-center gap-2 border-2 border-foreground rounded-full px-6 py-3 h-max w-max hover:bg-foreground transition-all duration-300 group"
+          className="flex items-center gap-2 border-2 border-foreground rounded-full px-6 py-3 h-max w-max hover:bg-foreground transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] group"
         >
           <span className="text-sm font-bold group-hover:text-foreground-invert transition-all duration-300 ">
             Fazer login
@@ -103,7 +104,7 @@ export function Header() {
         </Link>
         <Link
           href="https://app.usealpa.com/registro"
-          className="flex items-center gap-2 border-background border-2 rounded-full px-6 py-3 h-max w-max bg-background hover:bg-primary group transition-all duration-300 hover:border-primary"
+          className="flex items-center gap-2 border-background border-2 rounded-full px-6 py-3 h-max w-max bg-background hover:bg-primary group transition-all duration-300 hover:border-primary hover:scale-[1.03] active:scale-[0.97]"
         >
           <span className="text-sm font-bold">Criar conta</span>
           <ArrowUpRight className="size-5 stroke-2 stroke-primary group-hover:stroke-icon transition-all duration-300 " />

@@ -1,4 +1,5 @@
 import { CtaButton } from "@/components/cta-button";
+import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
@@ -11,6 +12,8 @@ interface SolutionCardProps {
 }
 
 export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
+  const fromX = direction === "right" ? 40 : -40;
+
   return (
     <div
       className={cn(
@@ -18,11 +21,20 @@ export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
         direction === "right" && "md:flex-row-reverse",
       )}
     >
-      <figure className="w-full max-w-[420px]  lg:max-w-[740px]">
-        <Image src={card.image} alt="" className="w-full" width={760} />
-      </figure>
+      <Reveal
+        y={0}
+        x={fromX}
+        className="w-full max-w-[420px]  lg:max-w-[740px]"
+      >
+        <figure>
+          <Image src={card.image} alt="" className="w-full" width={760} />
+        </figure>
+      </Reveal>
 
-      <div
+      <Reveal
+        y={0}
+        x={-fromX}
+        delay={0.1}
         className={cn(
           "flex flex-col gap-4 items-center md:items-start lg:min-w-[505px]",
         )}
@@ -43,7 +55,7 @@ export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
           </span>
           <ArrowUpRight className="size-5 stroke-icon group-hover:stroke-primary" />
         </CtaButton>
-      </div>
+      </Reveal>
     </div>
   );
 }
