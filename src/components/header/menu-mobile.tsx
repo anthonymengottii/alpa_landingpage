@@ -9,6 +9,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { links } from ".";
@@ -31,9 +32,29 @@ export function MenuMobile() {
             "flex flex-col gap-2.5 !p-0 h-max w-max bg-transparent hover:bg-transparent lg:hidden",
           )}
         >
-          <span className="w-12 h-[2px] bg-primary" />
-          <span className="w-12 h-[2px] bg-primary" />
-          <span className="w-12 h-[2px] bg-primary" />
+          <motion.span
+            className="w-12 h-[2px] bg-primary origin-center"
+            animate={
+              isOpen
+                ? { rotate: 45, y: 11 }
+                : { rotate: 0, y: 0 }
+            }
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          />
+          <motion.span
+            className="w-12 h-[2px] bg-primary"
+            animate={{ opacity: isOpen ? 0 : 1 }}
+            transition={{ duration: 0.2 }}
+          />
+          <motion.span
+            className="w-12 h-[2px] bg-primary origin-center"
+            animate={
+              isOpen
+                ? { rotate: -45, y: -11 }
+                : { rotate: 0, y: 0 }
+            }
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          />
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col pt-16 border-none px-4 pb-24">
