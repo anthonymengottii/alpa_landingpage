@@ -15,7 +15,7 @@ import { Inter } from "@/assets/svg/inter";
 import { Mastercard } from "@/assets/svg/mastercard";
 import { Pix } from "@/assets/svg/pix";
 import { Visa } from "@/assets/svg/visa";
-import { motion } from "motion/react";
+import { Reveal } from "@/components/motion/reveal";
 
 const baseBrands = [
   { component: Inter, label: "inter" },
@@ -42,12 +42,7 @@ export function Partners() {
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
+    <Reveal y={0} x={0}>
       <Carousel
         opts={{
           align: "start",
@@ -72,6 +67,6 @@ export function Partners() {
           ))}
         </CarouselContent>
       </Carousel>
-    </motion.div>
+    </Reveal>
   );
 }

@@ -1,9 +1,7 @@
-"use client";
-
 import { CtaButton } from "@/components/cta-button";
+import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { cards } from ".";
@@ -23,21 +21,20 @@ export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
         direction === "right" && "md:flex-row-reverse",
       )}
     >
-      <motion.figure
-        initial={{ opacity: 0, x: fromX }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      <Reveal
+        y={0}
+        x={fromX}
         className="w-full max-w-[420px]  lg:max-w-[740px]"
       >
-        <Image src={card.image} alt="" className="w-full" width={760} />
-      </motion.figure>
+        <figure>
+          <Image src={card.image} alt="" className="w-full" width={760} />
+        </figure>
+      </Reveal>
 
-      <motion.div
-        initial={{ opacity: 0, x: -fromX }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      <Reveal
+        y={0}
+        x={-fromX}
+        delay={0.1}
         className={cn(
           "flex flex-col gap-4 items-center md:items-start lg:min-w-[505px]",
         )}
@@ -58,7 +55,7 @@ export function SolutionCard({ card, direction = "left" }: SolutionCardProps) {
           </span>
           <ArrowUpRight className="size-5 stroke-icon group-hover:stroke-primary" />
         </CtaButton>
-      </motion.div>
+      </Reveal>
     </div>
   );
 }

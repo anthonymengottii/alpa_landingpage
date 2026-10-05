@@ -1,5 +1,3 @@
-"use client";
-
 import { LogoIcon } from "@/assets/svg/logo-icon";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
@@ -8,7 +6,6 @@ import Image from "next/image";
 import CellPhone from "@/assets/cell-phone.png";
 import { CtaButton } from "@/components/cta-button";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
 import Link from "next/link";
 
 export function GetStarted() {
@@ -42,18 +39,13 @@ export function GetStarted() {
         </Reveal>
 
         <div className="relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:w-max">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <Reveal y={40} delay={0.15}>
             <Image
               src={CellPhone}
               alt="cell phone"
               className="max-w-60 xl:max-w-full -mb-8"
             />
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>
