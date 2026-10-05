@@ -1,6 +1,9 @@
+"use client";
+
 import Billet from "@/assets/billet.png";
 import CreditCard from "@/assets/credit-card.png";
 import Pix from "@/assets/pix.png";
+import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 
 import {
@@ -41,33 +44,32 @@ const items = [
 export function FeeAndTerms() {
   return (
     <Section>
-      <div className="flex flex-col items-center justify-center space-y-4 mb-10 mx-auto">
+      <Reveal className="flex flex-col items-center justify-center space-y-4 mb-10 mx-auto">
         <span className="font-semibold text-primary text-center">
           Taxas e prazos
         </span>
         <h1 className="font-bold text-[32px] md:text-[40px] max-w-[600px] text-center">
           Maximize seus lucros com taxas incríveis!
         </h1>
-      </div>
+      </Reveal>
 
       <div className="grid grid-cols-1 items-center justify-items-center self-center lg:grid-cols-3 gap-8">
-        {items.map(({ image, title, content }) => (
-          <Card
-            key={title}
-            className="w-full px-10 pt-[76px] pb-16 rounded-[40px] border-0 gap-0  max-w-[397px] h-full"
-          >
-            <CardHeader className="flex flex-col gap-5 items-center p-0">
-              <figure className="flex items-end justify-end max-w-80 w-full rounded-2xl max-h-[202px]">
-                <Image src={image.src} alt={image.alt} />
-              </figure>
-              <CardTitle className="font-bold text-2xl text-center">
-                {title}
-              </CardTitle>
-              <CardDescription className="text-base font-normal text-center text-foreground">
-                {content}
-              </CardDescription>
-            </CardHeader>
-          </Card>
+        {items.map(({ image, title, content }, index) => (
+          <Reveal key={title} delay={index * 0.12} className="w-full flex justify-center">
+            <Card className="w-full px-10 pt-[76px] pb-16 rounded-[40px] border-0 gap-0  max-w-[397px] h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+              <CardHeader className="flex flex-col gap-5 items-center p-0">
+                <figure className="flex items-end justify-end max-w-80 w-full rounded-2xl max-h-[202px]">
+                  <Image src={image.src} alt={image.alt} />
+                </figure>
+                <CardTitle className="font-bold text-2xl text-center">
+                  {title}
+                </CardTitle>
+                <CardDescription className="text-base font-normal text-center text-foreground">
+                  {content}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Reveal>
         ))}
       </div>
     </Section>

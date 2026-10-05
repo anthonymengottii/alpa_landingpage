@@ -23,7 +23,7 @@ export function CtaButton({
       <Button
         className={cn(
           buttonVariants({ variant, className }),
-          "h-max !px-6 py-4 transition-colors duration-300",
+          "h-max !px-6 py-4 transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]",
           className,
         )}
         {...rest}

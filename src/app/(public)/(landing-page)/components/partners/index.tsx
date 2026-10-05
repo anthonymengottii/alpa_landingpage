@@ -15,6 +15,7 @@ import { Inter } from "@/assets/svg/inter";
 import { Mastercard } from "@/assets/svg/mastercard";
 import { Pix } from "@/assets/svg/pix";
 import { Visa } from "@/assets/svg/visa";
+import { motion } from "motion/react";
 
 const baseBrands = [
   { component: Inter, label: "inter" },
@@ -41,29 +42,36 @@ export function Partners() {
   );
 
   return (
-    <Carousel
-      opts={{
-        align: "start",
-        loop: true,
-        watchDrag: false,
-      }}
-      className="w-full pt-16 pb-20 "
-      plugins={[plugin.current]}
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      <CarouselContent>
-        {brands.map(({ component: Brand, label }, index) => (
-          <CarouselItem
-            key={`${label}${index}`}
-            className="max-w-[192px] pl-6 md:pl-8"
-          >
-            <Card className="bg-background border-border/20 border px-4 py-6 md:py-8 md:px-6 h-[94px] ">
-              <CardContent className="flex items-center justify-center p-0 w-full h-full">
-                <Brand className="" />
-              </CardContent>
-            </Card>
-          </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+      <Carousel
+        opts={{
+          align: "start",
+          loop: true,
+          watchDrag: false,
+        }}
+        className="w-full pt-16 pb-20 "
+        plugins={[plugin.current]}
+      >
+        <CarouselContent>
+          {brands.map(({ component: Brand, label }, index) => (
+            <CarouselItem
+              key={`${label}${index}`}
+              className="max-w-[192px] pl-6 md:pl-8"
+            >
+              <Card className="bg-background border-border/20 border px-4 py-6 md:py-8 md:px-6 h-[94px] transition-transform duration-300 hover:scale-[1.04]">
+                <CardContent className="flex items-center justify-center p-0 w-full h-full">
+                  <Brand className="" />
+                </CardContent>
+              </Card>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
+    </motion.div>
   );
 }

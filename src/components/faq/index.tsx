@@ -1,5 +1,6 @@
 import { ArrowUpRight, Plus } from "lucide-react";
 import { CtaButton } from "../cta-button";
+import { Reveal } from "../motion/reveal";
 import { Section } from "../section";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Card, CardContent } from "../ui/card";
@@ -15,7 +16,7 @@ const persons = [Person1, Person2, Person3];
 export function Faq() {
   return (
     <Section className="flex flex-col lg:flex-row gap-8 items-center lg:items-start mb-20 md:mb-32">
-      <div className="flex flex-col items-center gap-8">
+      <Reveal x={-24} y={0} className="flex flex-col items-center gap-8">
         <div className="flex flex-col items-center lg:items-start justify-center gap-4">
           <span className="text-primary font-semibold uppercase">FAQ</span>
           <h1 className="text-[32px] font-semibold text-center">
@@ -35,9 +36,9 @@ export function Faq() {
                   className={cn("relative size-10 -ml-3 translate-x-2")}
                   key={person.src}
                 >
-                  <AvatarImage 
-                    src={person.src} 
-                    alt={`Membro ${index + 1} do time de especialistas da Alpa`} 
+                  <AvatarImage
+                    src={person.src}
+                    alt={`Membro ${index + 1} do time de especialistas da Alpa`}
                   />
                   <AvatarFallback>TA</AvatarFallback>
                 </Avatar>
@@ -65,9 +66,11 @@ export function Faq() {
             </CtaButton>
           </CardContent>
         </Card>
-      </div>
+      </Reveal>
 
-      <Doubts />
+      <Reveal x={24} y={0} delay={0.1} className="w-full">
+        <Doubts />
+      </Reveal>
     </Section>
   );
 }
