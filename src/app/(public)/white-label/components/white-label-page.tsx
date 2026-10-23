@@ -1,23 +1,23 @@
 "use client";
 
-import { Partners } from "../../(landing-page)/components/partners";
-import { GetStarted } from "../../(landing-page)/components/get-started";
-import { RequestFees } from "../../(landing-page)/components/request-fees";
+import { WhiteLabelBranding } from "./white-label-branding";
+import { WhiteLabelCta } from "./white-label-cta";
+import { WhiteLabelDivision } from "./white-label-division";
 import { WhiteLabelFaq } from "./white-label-faq";
-import { WhiteLabelFeatures } from "./white-label-features";
 import { WhiteLabelHero } from "./white-label-hero";
+import { WhiteLabelStats } from "./white-label-stats";
 import { WhiteLabelSteps } from "./white-label-steps";
 
 export function WhiteLabelPage() {
   return (
-    <>
+    <main>
       <WhiteLabelHero />
-      <Partners />
-      <WhiteLabelFeatures />
+      <WhiteLabelStats />
+      <WhiteLabelBranding />
+      <WhiteLabelDivision />
       <WhiteLabelSteps />
-      <RequestFees />
-      <GetStarted />
+      <WhiteLabelCta />
       <WhiteLabelFaq />
-    </>
+    </main>
   );
 }
