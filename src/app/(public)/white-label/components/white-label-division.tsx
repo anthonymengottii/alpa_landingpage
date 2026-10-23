@@ -10,6 +10,7 @@ const columns = [
       "Relacionamento com seus clientes",
       "Definição de taxas e margem",
       "Divulgação da sua marca",
+      "Aprovação (KYC) dos seus lojistas",
     ],
   },
   {
@@ -17,7 +18,7 @@ const columns = [
     tone: "bg-primary",
     items: [
       "Infraestrutura e processamento",
-      "Antifraude e segurança",
+      "Autenticação com MFA e controles de segurança",
       "Integrações com adquirentes",
     ],
   },

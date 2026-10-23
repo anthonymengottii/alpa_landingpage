@@ -2,10 +2,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 
 const stats = [
-  { value: "100%", label: "com a sua identidade" },
-  { value: "3", label: "meios de pagamento" },
-  { value: "Multi", label: "adquirência" },
-  { value: "API", label: "e webhooks prontos" },
+  { value: "3", label: "meios de pagamento: PIX, cartão e boleto" },
+  { value: "12x", label: "parcelamento no cartão" },
+  { value: "Multi", label: "adquirência com roteamento" },
+  { value: "4", label: "SDKs: JS, PHP, Python e Java" },
 ];
 
 export function WhiteLabelStats() {

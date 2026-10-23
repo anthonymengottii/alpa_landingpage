@@ -3,7 +3,7 @@
 import { LogoIcon } from "@/assets/svg/logo-icon";
 import { CtaButton } from "@/components/cta-button";
 import { Section } from "@/components/section";
-import { ArrowUpRight, ShieldCheck, TrendingUp } from "lucide-react";
+import { ArrowUpRight, Globe, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
 import { WHITE_LABEL_WHATSAPP } from "./white-label-links";
 
@@ -70,11 +70,11 @@ function BrandPreview() {
         transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="absolute -bottom-6 -left-2 md:-left-10 flex items-center gap-3 rounded-2xl bg-primary px-5 py-4 shadow-xl"
       >
-        <ShieldCheck className="size-6" />
+        <Globe className="size-6" />
         <span className="text-sm font-bold leading-4">
-          Antifraude
+          Checkout no
           <br />
-          híbrido ativo
+          seu domínio
         </span>
       </motion.div>
     </motion.div>
@@ -98,7 +98,8 @@ export function WhiteLabelHero() {
         </h1>
         <p className="text-base max-w-lg">
           Lance a sua própria plataforma de pagamentos com identidade visual,
-          domínio e taxas próprias, sem construir tecnologia do zero.
+          domínio e taxas próprias. PIX, cartão em até 12x e boleto, sem
+          construir tecnologia do zero.
         </p>
 
         <CtaButton href={WHITE_LABEL_WHATSAPP} target="_blank" variant="primary">

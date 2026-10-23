@@ -14,9 +14,10 @@ import {
 
 const customizable = [
   "Nome do sistema e logo",
-  "Cor primária em toda a interface",
+  "Cor primária aplicada em toda a interface",
   "Banner da tela de login",
-  "Título, descrição e imagem de SEO",
+  "Título, descrição, palavras-chave e imagem de SEO",
+  "Painel e checkout em subdomínios do seu domínio",
 ];
 
 const cards = [
@@ -24,19 +25,19 @@ const cards = [
     icon: Cash,
     title: "Taxas customizadas",
     description:
-      "Defina as taxas de PIX, cartão e boleto por cliente e construa a sua margem.",
+      "Defina taxas de PIX, cartão (inclusive por parcela, de 2x a 12x) e boleto por empresa, além de limites de transação e de saque.",
   },
   {
     icon: Data,
     title: "Multiadquirência",
     description:
-      "Roteie as transações entre adquirentes para aumentar a aprovação.",
+      "Conecte várias adquirentes, com prioridade configurável, e divida pagamentos entre plataforma e lojistas com split.",
   },
   {
     icon: Persons,
     title: "Equipe e afiliados",
     description:
-      "Permissões por usuário e marketplace de afiliados já incluídos.",
+      "Cargos com permissões granulares para a sua equipe e marketplace de afiliados com comissão automática.",
   },
 ];
 
