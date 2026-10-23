@@ -1,7 +1,7 @@
 import { JsonLd } from "@/components/json-ld";
 import { Metadata } from "next";
 import { WhiteLabelPage } from "./components/white-label-page";
-import { whiteLabelDoubts } from "./components/white-label-faq";
+import { whiteLabelDoubts } from "./components/white-label-doubts";
 
 export const metadata: Metadata = {
   title: "White Label | Sua própria plataforma de pagamentos",

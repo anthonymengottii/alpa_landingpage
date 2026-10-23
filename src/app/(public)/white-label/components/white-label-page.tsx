@@ -3,7 +3,8 @@
 import { WhiteLabelBranding } from "./white-label-branding";
 import { WhiteLabelCta } from "./white-label-cta";
 import { WhiteLabelDivision } from "./white-label-division";
-import { WhiteLabelFaq } from "./white-label-faq";
+import { Faq } from "@/components/faq";
+import { whiteLabelDoubts } from "./white-label-doubts";
 import { WhiteLabelFeatures } from "./white-label-features";
 import { WhiteLabelHero } from "./white-label-hero";
 import { WhiteLabelMethods } from "./white-label-methods";
@@ -21,7 +22,7 @@ export function WhiteLabelPage() {
       <WhiteLabelDivision />
       <WhiteLabelSteps />
       <WhiteLabelCta />
-      <WhiteLabelFaq />
+      <Faq items={whiteLabelDoubts} />
     </main>
   );
 }

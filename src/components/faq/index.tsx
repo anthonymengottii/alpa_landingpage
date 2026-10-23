@@ -4,7 +4,7 @@ import { Reveal } from "../motion/reveal";
 import { Section } from "../section";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Card, CardContent } from "../ui/card";
-import { Doubts } from "./doubts";
+import { type Doubt, Doubts } from "./doubts";
 
 import Person1 from "@/assets/person.png";
 import Person2 from "@/assets/person2.png";
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const persons = [Person1, Person2, Person3];
 
-export function Faq() {
+export function Faq({ items }: { items?: Doubt[] }) {
   return (
     <Section className="flex flex-col lg:flex-row gap-8 items-center lg:items-start mb-20 md:mb-32">
       <Reveal x={-24} y={0} className="flex flex-col items-center gap-8">
@@ -69,7 +69,7 @@ export function Faq() {
       </Reveal>
 
       <Reveal x={24} y={0} delay={0.1} className="w-full">
-        <Doubts />
+        <Doubts items={items} />
       </Reveal>
     </Section>
   );

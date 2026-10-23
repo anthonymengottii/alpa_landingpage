@@ -44,10 +44,12 @@ export const doubts = [
   },
 ];
 
-export function Doubts() {
+export type Doubt = (typeof doubts)[number];
+
+export function Doubts({ items = doubts }: { items?: Doubt[] }) {
   return (
     <Accordion type="single" collapsible className="w-full flex flex-col gap-2">
-      {doubts.map(({ question, answer }) => (
+      {items.map(({ question, answer }) => (
         <AccordionItem
           value={question}
           key={question}

@@ -58,9 +58,6 @@ function HeroVisual() {
               </span>
             </div>
           </div>
-          <span className="rounded-full bg-background px-3 py-1 text-[11px] font-semibold text-primary">
-            ao vivo
-          </span>
         </div>
 
         <div className="rounded-3xl bg-background p-5 flex flex-col gap-1">
@@ -131,9 +128,7 @@ export function WhiteLabelHero() {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col items-center lg:items-start gap-5 text-center lg:text-start"
         >
-          <span className="rounded-full border border-primary/60 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary uppercase tracking-wide">
-            White Label
-          </span>
+          <span className="font-semibold text-primary">White Label</span>
           <h1 className="text-[34px] sm:text-5xl md:text-6xl font-bold leading-[1.1] max-w-xl">
             Seu gateway de pagamentos, com a{" "}
             <span className="text-primary">sua marca.</span>
