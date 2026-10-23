@@ -31,6 +31,11 @@ export const links = [
     external: false,
   },
   {
+    label: "White Label",
+    href: "/white-label",
+    external: false,
+  },
+  {
     label: "Documentação",
     href: "https://docs.usealpa.com/pages/introduction",
     external: true,
