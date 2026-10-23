@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     "checkout personalizado",
     "multiadquirência",
   ],
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
     canonical: "https://usealpa.com/white-label",
   },
