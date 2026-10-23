@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
+import { LogoIcon } from "@/assets/svg/logo-icon";
 import { Check } from "lucide-react";
 
 const columns = [
@@ -38,10 +39,14 @@ export function WhiteLabelDivision() {
         {columns.map(({ title, tone, items }, index) => (
           <Reveal key={title} delay={index * 0.1}>
             <div
-              className={`h-full rounded-[40px] p-10 flex flex-col gap-6 ${tone}`}
+              className={`relative h-full overflow-hidden rounded-[40px] p-10 flex flex-col gap-6 ${tone}`}
             >
-              <h3 className="text-2xl font-bold">{title}</h3>
-              <ul className="flex flex-col gap-4">
+              <LogoIcon
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-8 -bottom-10 size-56 opacity-10 [&_path]:fill-foreground"
+              />
+              <h3 className="relative text-2xl font-bold">{title}</h3>
+              <ul className="relative flex flex-col gap-4">
                 {items.map((item) => (
                   <li key={item} className="flex items-center gap-3 text-base">
                     <span className="flex shrink-0 items-center justify-center size-7 rounded-full bg-foreground">

@@ -17,7 +17,7 @@ export function WhiteLabelStats() {
             key={label}
             className="flex flex-col items-center gap-1 bg-card px-6 py-10 text-center"
           >
-            <span className="text-3xl md:text-[40px] font-bold text-primary">
+            <span className="text-4xl md:text-5xl font-bold text-primary">
               {value}
             </span>
             <span className="text-sm">{label}</span>

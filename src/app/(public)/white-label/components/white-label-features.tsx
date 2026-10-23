@@ -2,12 +2,21 @@
 
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
-import { Check } from "lucide-react";
+import {
+  Check,
+  CreditCard,
+  Lock,
+  Plug,
+  Rocket,
+  ShoppingCart,
+  Wallet,
+} from "lucide-react";
 import { useState } from "react";
 
 const categories = [
   {
     id: "pagamentos",
+    icon: CreditCard,
     label: "Pagamentos",
     items: [
       "PIX com QR code, cartão de crédito/débito e boleto com vencimento configurável",
@@ -20,6 +29,7 @@ const categories = [
   },
   {
     id: "checkout",
+    icon: ShoppingCart,
     label: "Checkout e vendas",
     items: [
       "Links de pagamento com slug próprio e controle de estoque",
@@ -32,6 +42,7 @@ const categories = [
   },
   {
     id: "crescimento",
+    icon: Rocket,
     label: "Crescimento",
     items: [
       "Marketplace de afiliados com comissão percentual ou fixa e link rastreável",
@@ -44,6 +55,7 @@ const categories = [
   },
   {
     id: "financeiro",
+    icon: Wallet,
     label: "Financeiro",
     items: [
       "Carteira digital com histórico de movimentações",
@@ -56,6 +68,7 @@ const categories = [
   },
   {
     id: "seguranca",
+    icon: Lock,
     label: "Segurança",
     items: [
       "Autenticação em dois fatores (TOTP) e login com Google",
@@ -68,6 +81,7 @@ const categories = [
   },
   {
     id: "integracoes",
+    icon: Plug,
     label: "Integrações",
     items: [
       "API REST com documentação interativa (Swagger/OpenAPI)",
@@ -94,19 +108,20 @@ export function WhiteLabelFeatures() {
       </Reveal>
 
       <Reveal className="flex flex-wrap justify-center gap-2 mb-8" role="tablist">
-        {categories.map(({ id, label }) => (
+        {categories.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
             type="button"
             role="tab"
             aria-selected={active === id}
             onClick={() => setActive(id)}
-            className={`cursor-pointer rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 ${
+            className={`flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 ${
               active === id
                 ? "bg-primary"
                 : "bg-card hover:bg-accent hover:text-foreground-invert"
             }`}
           >
+            <Icon className="size-4" />
             {label}
           </button>
         ))}
@@ -119,7 +134,7 @@ export function WhiteLabelFeatures() {
         {current.items.map((item) => (
           <li
             key={item}
-            className="flex items-start gap-4 rounded-[32px] bg-card p-6 text-base"
+            className="flex items-start gap-4 rounded-[32px] bg-card p-6 text-base border border-transparent transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl"
           >
             <span className="flex shrink-0 items-center justify-center size-7 rounded-full bg-primary">
               <Check className="size-4 stroke-3" />
