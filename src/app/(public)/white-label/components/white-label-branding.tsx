@@ -3,7 +3,6 @@
 import { Bank } from "@/assets/svg/bank";
 import { Cash } from "@/assets/svg/cash";
 import { Data } from "@/assets/svg/data";
-import { LogoIcon } from "@/assets/svg/logo-icon";
 import { Persons } from "@/assets/svg/persons";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
@@ -16,6 +15,13 @@ import {
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import {
+  MobileAppScreen,
+  ScaledFrame,
+  WEB_SCREEN,
+  WebDashboardScreen,
+  slugify,
+} from "./white-label-screens";
 
 const palette = [
   { name: "Laranja", value: "#FF3D02" },
@@ -54,107 +60,6 @@ const cards = [
   },
 ];
 
-function slugify(value: string) {
-  return (
-    value
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z0-9]/g, "") || "suamarca"
-  );
-}
-
-function BrandPreview({ name, color }: { name: string; color: string }) {
-  const bars = [35, 55, 40, 70, 50, 85, 60, 95];
-
-  return (
-    <div className="overflow-hidden rounded-[32px] bg-[#FFF8F0] text-foreground-invert shadow-2xl">
-      <div className="flex items-center gap-3 border-b border-black/5 bg-white/60 px-5 py-3">
-        <div className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-black/15" />
-          <span className="size-2.5 rounded-full bg-black/15" />
-          <span className="size-2.5 rounded-full bg-black/15" />
-        </div>
-        <span className="flex-1 truncate rounded-full bg-black/5 px-4 py-1 text-xs text-foreground-invert/60">
-          app.{slugify(name)}.com
-        </span>
-      </div>
-
-      <div className="grid grid-cols-[64px_1fr] sm:grid-cols-[150px_1fr] min-h-[360px]">
-        <aside className="flex flex-col gap-4 border-r border-black/5 p-4">
-          <div className="flex items-center gap-2">
-            <span
-              className="flex shrink-0 items-center justify-center size-9 rounded-xl transition-colors duration-500"
-              style={{ backgroundColor: color }}
-            >
-              <LogoIcon className="size-4 [&_path]:fill-white" />
-            </span>
-            <span className="hidden sm:block truncate text-sm font-bold">
-              {name || "Sua Marca"}
-            </span>
-          </div>
-          {["Início", "Vendas", "Saques"].map((item, i) => (
-            <span
-              key={item}
-              className={cn(
-                "hidden sm:block rounded-xl px-3 py-2 text-xs font-semibold transition-colors duration-500",
-                i === 0 ? "text-white" : "text-foreground-invert/60",
-              )}
-              style={i === 0 ? { backgroundColor: color } : undefined}
-            >
-              {item}
-            </span>
-          ))}
-        </aside>
-
-        <div className="flex flex-col gap-4 p-5">
-          <div className="rounded-2xl bg-foreground-invert p-5 text-foreground">
-            <span
-              className="text-xs transition-colors duration-500"
-              style={{ color }}
-            >
-              Total em vendas
-            </span>
-            <p className="text-2xl font-bold">R$ 450.596,62</p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              ["Pedidos pagos", "3.338"],
-              ["Ticket médio", "R$ 134,99"],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl bg-white p-4">
-                <span className="text-[11px] text-accent">{label}</span>
-                <p className="text-base font-bold">{value}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex flex-1 items-end justify-between rounded-2xl bg-white p-4 min-h-28">
-            {bars.map((h, i) => (
-              <span
-                key={`${h}-${i}`}
-                className="w-2.5 sm:w-4 rounded-full transition-colors duration-500"
-                style={{
-                  height: `${h}%`,
-                  backgroundColor: i === bars.length - 1 ? color : `${color}33`,
-                }}
-              />
-            ))}
-          </div>
-
-          <span
-            className="self-start rounded-full px-5 py-2.5 text-xs font-bold text-white transition-colors duration-500"
-            style={{ backgroundColor: color }}
-          >
-            Solicitar saque
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export function WhiteLabelBranding() {
   const [name, setName] = useState("Sua Marca");
   const [color, setColor] = useState(palette[0].value);
@@ -172,8 +77,8 @@ export function WhiteLabelBranding() {
       </Reveal>
 
       <Reveal>
-        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-8 rounded-[48px] bg-accent p-6 md:p-10">
-          <div className="flex flex-col gap-8 text-foreground-invert">
+        <div className="flex flex-col gap-10 rounded-[48px] bg-accent p-6 md:p-10 xl:pb-24">
+          <div className="grid grid-cols-1 gap-8 text-foreground-invert md:grid-cols-2 xl:grid-cols-[1fr_1fr_1.3fr]">
             <div className="flex flex-col gap-3">
               <label htmlFor="wl-name" className="text-sm font-bold">
                 Nome da sua plataforma
@@ -212,11 +117,11 @@ export function WhiteLabelBranding() {
               </div>
             </div>
 
-            <ul className="flex flex-col gap-2.5">
+            <ul className="flex flex-col gap-2 md:col-span-2 xl:col-span-1">
               {customizable.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 rounded-full bg-foreground-invert/10 px-5 py-3 text-sm font-semibold"
+                  className="flex items-center gap-3 rounded-full bg-foreground-invert/10 px-5 py-2 text-sm font-semibold"
                 >
                   <span
                     className="size-2.5 shrink-0 rounded-full transition-colors duration-500"
@@ -228,7 +133,22 @@ export function WhiteLabelBranding() {
             </ul>
           </div>
 
-          <BrandPreview name={name} color={color} />
+          <div className="relative flex flex-col items-center gap-8">
+            <div className="w-full xl:w-[82%] xl:self-start">
+              <ScaledFrame {...WEB_SCREEN}>
+                <WebDashboardScreen name={name} color={color} />
+              </ScaledFrame>
+              <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70">
+                Dashboard web · app.{slugify(name)}.com
+              </p>
+            </div>
+            <div className="flex flex-col items-center xl:absolute xl:-bottom-16 xl:right-2">
+              <MobileAppScreen name={name} color={color} />
+              <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70 xl:hidden">
+                App mobile Android
+              </p>
+            </div>
+          </div>
         </div>
       </Reveal>
 
