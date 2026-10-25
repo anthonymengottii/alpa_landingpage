@@ -5,7 +5,13 @@ import { WhiteLabelCta } from "./white-label-cta";
 import { WhiteLabelDivision } from "./white-label-division";
 import { Faq } from "@/components/faq";
 import { whiteLabelDoubts } from "./white-label-doubts";
-import { WhiteLabelFeatures } from "./white-label-features";
+import {
+  CheckoutSection,
+  FinanceSection,
+  GrowthSection,
+  IntegrationSection,
+  SecuritySection,
+} from "./white-label-sections";
 import { WhiteLabelHero } from "./white-label-hero";
 import { WhiteLabelMethods } from "./white-label-methods";
 import { WhiteLabelStats } from "./white-label-stats";
@@ -13,16 +19,20 @@ import { WhiteLabelSteps } from "./white-label-steps";
 
 export function WhiteLabelPage() {
   return (
-    <main>
+    <>
       <WhiteLabelHero />
       <WhiteLabelStats />
       <WhiteLabelBranding />
       <WhiteLabelMethods />
-      <WhiteLabelFeatures />
+      <CheckoutSection />
+      <GrowthSection />
+      <FinanceSection />
+      <IntegrationSection />
+      <SecuritySection />
       <WhiteLabelDivision />
       <WhiteLabelSteps />
       <WhiteLabelCta />
       <Faq items={whiteLabelDoubts} />
-    </main>
+    </>
   );
 }
