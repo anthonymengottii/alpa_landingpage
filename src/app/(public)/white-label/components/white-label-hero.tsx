@@ -4,10 +4,9 @@ import { Bank } from "@/assets/svg/bank";
 import { Cash } from "@/assets/svg/cash";
 import { LogoIcon } from "@/assets/svg/logo-icon";
 import { Money } from "@/assets/svg/money";
-import Banner from "@/assets/banner-3.png";
 import CreditCard from "@/assets/credit-card.png";
-import { CtaButton } from "@/components/cta-button";
-import { ArrowUpRight, TrendingUp } from "lucide-react";
+import { HeroContent } from "@/components/hero-content";
+import { TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { WHITE_LABEL_WHATSAPP } from "./white-label-links";
@@ -28,7 +27,7 @@ function HeroVisual() {
       initial={{ opacity: 0, y: 32 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="relative mx-auto w-full max-w-[560px] h-[420px] sm:h-[500px]"
+      className="relative mx-auto w-full max-w-[540px] h-[420px] sm:h-[480px]"
       aria-hidden="true"
     >
       <div className="absolute inset-x-0 top-8 bottom-0 rounded-[48px] bg-primary overflow-hidden">
@@ -110,59 +109,21 @@ function HeroVisual() {
 
 export function WhiteLabelHero() {
   return (
-    <section className="relative overflow-hidden">
-      <Image
-        src={Banner}
-        alt=""
-        fill
-        priority
-        className="object-cover opacity-70"
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-
-      <div className="relative max-w-7xl mx-auto w-full px-6 2xl:px-0 pt-44 pb-24 md:pt-56 md:pb-36 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center lg:items-start gap-5 text-center lg:text-start"
-        >
-          <span className="font-semibold text-primary">White Label</span>
-          <h1 className="text-[34px] sm:text-5xl md:text-6xl font-bold leading-[1.1] max-w-xl">
-            Seu gateway de pagamentos, com a{" "}
-            <span className="text-primary">sua marca.</span>
-          </h1>
-          <p className="text-base md:text-lg max-w-lg">
-            Lance a sua própria plataforma de pagamentos com identidade visual,
-            domínio e taxas próprias. PIX, cartão em até 12x e boleto, sem
-            construir tecnologia do zero.
-          </p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
-          >
-            <CtaButton
-              href={WHITE_LABEL_WHATSAPP}
-              target="_blank"
-              variant="primary"
-            >
-              <span className="text-sm font-bold group-hover:text-foreground-invert">
-                Quero minha plataforma
-              </span>
-              <ArrowUpRight className="size-5 stroke-icon group-hover:stroke-primary" />
-            </CtaButton>
-            <CtaButton href="#estudio" variant="outline">
-              <span className="text-sm font-bold">Ver personalização</span>
-            </CtaButton>
-          </motion.div>
-        </motion.div>
+    <main className="relative w-full overflow-hidden bg-accent">
+      <div className="w-full max-w-7xl mx-auto px-6 pt-20 md:pt-20 lg:pt-24 xl:pt-32 pb-20 lg:pb-28 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:items-start">
+        <HeroContent
+          eyebrow="White Label"
+          title="Seu gateway de pagamentos, com a sua marca."
+          description="Lance a sua própria plataforma de pagamentos com identidade visual, domínio e taxas próprias. PIX, cartão em até 12x e boleto, sem construir tecnologia do zero."
+          cta={{
+            label: "Quero minha plataforma",
+            href: WHITE_LABEL_WHATSAPP,
+            target: "_blank",
+          }}
+        />
 
         <HeroVisual />
       </div>
-    </section>
+    </main>
   );
 }
