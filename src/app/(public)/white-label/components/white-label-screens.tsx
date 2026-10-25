@@ -52,11 +52,13 @@ export function ScaledFrame({
   height,
   children,
   maxScale = 1,
+  minScale = 0,
 }: {
   width: number;
   height: number;
   children: ReactNode;
   maxScale?: number;
+  minScale?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -65,15 +67,15 @@ export function ScaledFrame({
     const el = ref.current;
     if (!el) return;
     const update = () =>
-      setScale(Math.min(maxScale, el.clientWidth / width));
+      setScale(Math.max(minScale, Math.min(maxScale, el.clientWidth / width)));
     update();
     const observer = new ResizeObserver(update);
     observer.observe(el);
     return () => observer.disconnect();
-  }, [width, maxScale]);
+  }, [width, maxScale, minScale]);
 
   return (
-    <div ref={ref} className="w-full">
+    <div ref={ref} className="w-full overflow-x-auto">
       <div style={{ height: height * scale, width: width * scale }}>
         <div
           style={{

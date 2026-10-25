@@ -63,6 +63,7 @@ const cards = [
 export function WhiteLabelBranding() {
   const [name, setName] = useState("Sua Marca");
   const [color, setColor] = useState(palette[0].value);
+  const [view, setView] = useState<"mobile" | "web">("mobile");
 
   return (
     <Section className="pb-20 md:pb-40" id="estudio">
@@ -134,15 +135,52 @@ export function WhiteLabelBranding() {
           </div>
 
           <div className="relative flex flex-col items-center gap-8">
-            <div className="w-full xl:w-[82%] xl:self-start">
-              <ScaledFrame {...WEB_SCREEN}>
+            <div
+              role="tablist"
+              className="flex gap-2 rounded-full bg-foreground-invert/10 p-1 xl:hidden"
+            >
+              {(
+                [
+                  ["mobile", "App mobile"],
+                  ["web", "Dashboard web"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={view === id}
+                  onClick={() => setView(id)}
+                  className={cn(
+                    "cursor-pointer rounded-full px-5 py-2.5 text-sm font-bold text-foreground-invert transition-all duration-300",
+                    view === id && "bg-[#FFF8F0] shadow",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <div
+              className={cn(
+                "w-full xl:block xl:w-[82%] xl:self-start",
+                view === "web" ? "block" : "hidden",
+              )}
+            >
+              <ScaledFrame {...WEB_SCREEN} minScale={0.62}>
                 <WebDashboardScreen name={name} color={color} />
               </ScaledFrame>
               <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70">
                 Dashboard web · app.{slugify(name)}.com
+                <span className="xl:hidden"> · deslize para ver mais</span>
               </p>
             </div>
-            <div className="flex flex-col items-center xl:absolute xl:-bottom-16 xl:right-2">
+            <div
+              className={cn(
+                "flex-col items-center xl:absolute xl:-bottom-16 xl:right-2 xl:flex",
+                view === "mobile" ? "flex" : "hidden",
+              )}
+            >
               <MobileAppScreen name={name} color={color} />
               <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70 xl:hidden">
                 App mobile Android
