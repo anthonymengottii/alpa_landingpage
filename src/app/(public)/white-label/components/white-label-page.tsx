@@ -2,7 +2,6 @@
 
 import { WhiteLabelBranding } from "./white-label-branding";
 import { WhiteLabelCta } from "./white-label-cta";
-import { WhiteLabelDivision } from "./white-label-division";
 import { Faq } from "@/components/faq";
 import { whiteLabelDoubts } from "./white-label-doubts";
 import {
@@ -29,7 +28,6 @@ export function WhiteLabelPage() {
       <FinanceSection />
       <IntegrationSection />
       <SecuritySection />
-      <WhiteLabelDivision />
       <WhiteLabelSteps />
       <WhiteLabelCta />
       <Faq items={whiteLabelDoubts} />
