@@ -5,75 +5,75 @@ import CreditCard from "@/assets/credit-card.png";
 import Pix from "@/assets/pix.png";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Image from "next/image";
 
-const methods = [
+const items = [
   {
-    image: Pix,
-    label: "PIX",
-    title: "Recebimento instantâneo",
-    description: "Cobrança com QR code e confirmação imediata do pagamento.",
-    frame: "bg-accent",
-    cover: true,
+    image: {
+      src: CreditCard,
+      alt: "Cartão de crédito com parcelamento em até 12x",
+    },
+    title: "Cartão em até 12x",
+    content: "Crédito e débito com taxa por parcela e liberação automática",
   },
   {
-    image: CreditCard,
-    label: "Cartão",
-    title: "Em até 12x",
-    description:
-      "Crédito e débito com taxa por parcela e liberação automática dos valores.",
-    frame: "bg-primary",
-    cover: false,
+    image: {
+      src: Billet,
+      alt: "Boleto bancário com vencimento configurável",
+    },
+    title: "Boleto",
+    content: "Geração automática com vencimento configurável",
   },
   {
-    image: Billet,
-    label: "Boleto",
-    title: "Geração automática",
-    description: "Boletos com vencimento configurável para cada cobrança.",
-    frame: "bg-card",
-    cover: true,
+    image: {
+      src: Pix,
+      alt: "PIX com QR code e confirmação imediata",
+    },
+    title: "PIX",
+    content: "Cobrança com QR code e confirmação imediata",
   },
 ];
 
 export function WhiteLabelMethods() {
   return (
     <Section className="pb-20 md:pb-40">
-      <Reveal className="flex flex-col items-center gap-4 mb-12 text-center">
-        <span className="font-bold text-primary">Meios de pagamento</span>
-        <h2 className="font-bold text-[32px] md:text-[40px] max-w-[620px] leading-tight">
+      <Reveal className="flex flex-col items-center justify-center space-y-4 mb-10 mx-auto">
+        <span className="font-semibold text-primary text-center">
+          Meios de pagamento
+        </span>
+        <h2 className="font-bold text-[32px] md:text-[40px] max-w-[600px] text-center">
           Seus clientes pagam como preferirem
         </h2>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {methods.map(
-          ({ image, label, title, description, frame, cover }, index) => (
-            <Reveal key={label} delay={index * 0.1}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[40px] bg-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
-                <div
-                  className={`relative flex h-64 items-center justify-center overflow-hidden ${frame}`}
-                >
-                  <Image
-                    src={image}
-                    alt={`${label} na plataforma white label`}
-                    className={
-                      cover
-                        ? "h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                        : "w-[78%] -rotate-6 drop-shadow-2xl transition-transform duration-500 group-hover:rotate-0 group-hover:scale-105"
-                    }
-                  />
-                </div>
-                <div className="flex flex-col gap-2 p-8">
-                  <span className="text-sm font-bold text-primary">
-                    {label}
-                  </span>
-                  <h3 className="text-xl font-bold">{title}</h3>
-                  <p className="text-base">{description}</p>
-                </div>
-              </article>
-            </Reveal>
-          ),
-        )}
+      <div className="grid grid-cols-1 items-center justify-items-center self-center lg:grid-cols-3 gap-8">
+        {items.map(({ image, title, content }, index) => (
+          <Reveal
+            key={title}
+            delay={index * 0.12}
+            className="w-full flex justify-center"
+          >
+            <Card className="w-full px-10 pt-[76px] pb-16 rounded-[40px] border-0 gap-0 max-w-[397px] h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+              <CardHeader className="flex flex-col gap-5 items-center p-0">
+                <figure className="flex items-end justify-end max-w-80 w-full rounded-2xl max-h-[202px]">
+                  <Image src={image.src} alt={image.alt} />
+                </figure>
+                <CardTitle className="font-bold text-2xl text-center">
+                  {title}
+                </CardTitle>
+                <CardDescription className="text-base font-normal text-center text-foreground">
+                  {content}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </Reveal>
+        ))}
       </div>
     </Section>
   );
