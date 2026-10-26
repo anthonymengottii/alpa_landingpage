@@ -15,14 +15,12 @@ import {
 } from "./white-label-sections";
 import { WhiteLabelHero } from "./white-label-hero";
 import { WhiteLabelMethods } from "./white-label-methods";
-import { WhiteLabelStats } from "./white-label-stats";
 import { WhiteLabelSteps } from "./white-label-steps";
 
 export function WhiteLabelPage() {
   return (
     <>
       <WhiteLabelHero />
-      <WhiteLabelStats />
       <WhiteLabelBranding />
       <WhiteLabelMethods />
       <SalesSection />
