@@ -263,7 +263,7 @@ export function WhiteLabelBranding() {
 
           <p className="relative -mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground-invert xl:hidden">
             <MousePointerClick className="size-4" />
-            Escolha uma cor ou envie seu logo
+            Mude a cor, envie seu logo e navegue pelo menu
           </p>
 
           <div className="relative flex flex-col items-center gap-8">
@@ -281,7 +281,7 @@ export function WhiteLabelBranding() {
                 />
               </ScaledFrame>
             </div>
-            <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.85]">
+            <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.62]">
               <MobileAppScreen name={name} color={color} logoUrl={logoUrl} />
             </div>
           </div>

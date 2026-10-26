@@ -2,6 +2,19 @@
 
 import { LogoIcon } from "@/assets/svg/logo-icon";
 import {
+  AffiliatesPage,
+  CheckoutsPage,
+  ClientsPage,
+  CouponsPage,
+  LinksPage,
+  PlansPage,
+  ProductsPage,
+  RatesPage,
+  TransactionsPage,
+  WithdrawPage,
+  type Theme,
+} from "./white-label-pages";
+import {
   Banknote,
   Calendar,
   ChevronDown,
@@ -245,6 +258,15 @@ export function WebDashboardScreen({
 }: BrandProps & { bleedRight?: boolean }) {
   const darkColor = dark(color);
   const brand = name || "Sua Marca";
+  const [page, setPage] = useState(0);
+  const theme: Theme = {
+    color,
+    dark: darkColor,
+    link: textOnWhite(color),
+    fg: readableOn(color),
+    tint: tint(color, 14),
+  };
+  const ActiveIcon = navItems[page].icon;
   const periods = ["Hoje", "Ontem", "Semana", "Outubro", "Últimos 30 dias"];
   const kpis = [
     { label: "Receita Total", value: "R$ 450.596,62", icon: DollarSign, cta: "Ver relatório" },
@@ -285,18 +307,21 @@ export function WebDashboardScreen({
         </div>
         <nav className="flex flex-col gap-0.5">
           {navItems.map(({ label, icon: Icon }, i) => (
-            <span
+            <button
               key={label}
-              className="flex h-[42px] items-center gap-3 rounded-lg px-3 text-[15px] transition-colors duration-500"
+              type="button"
+              onClick={() => setPage(i)}
+              aria-current={page === i ? "page" : undefined}
+              className="flex h-[42px] cursor-pointer items-center gap-3 rounded-lg px-3 text-start text-[15px] transition-colors duration-300 hover:bg-gray-50"
               style={
-                i === 0
+                page === i
                   ? { backgroundColor: tint(color, 12), color: textOnWhite(color) }
                   : { color: "#374151" }
               }
             >
               <Icon className="size-5" />
               {label}
-            </span>
+            </button>
           ))}
         </nav>
         <div className="mt-auto flex items-center gap-3 border-t border-gray-200 pt-3">
@@ -317,7 +342,7 @@ export function WebDashboardScreen({
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex h-16 shrink-0 items-center justify-between px-10 text-sm">
           <span className="flex items-center gap-2 font-medium">
-            <LayoutGrid className="size-4" /> Dashboard
+            <ActiveIcon className="size-4" /> {navItems[page].label}
           </span>
           <div className="flex items-center gap-4">
             <span className="flex w-72 items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-xs text-gray-600">
@@ -331,6 +356,8 @@ export function WebDashboardScreen({
         </header>
 
         <div className="mr-6 flex-1 overflow-hidden rounded-t-[40px] bg-gray-100 px-10 pt-9">
+          {page === 0 && (
+            <>
           <h3
             className="text-[30px] font-bold leading-tight transition-colors duration-500"
             style={{ color: darkColor }}
@@ -413,6 +440,18 @@ export function WebDashboardScreen({
               </div>
             </div>
           </div>
+            </>
+          )}
+          {page === 1 && <TransactionsPage theme={theme} />}
+          {page === 2 && <ClientsPage theme={theme} />}
+          {page === 3 && <ProductsPage theme={theme} />}
+          {page === 4 && <CheckoutsPage theme={theme} />}
+          {page === 5 && <AffiliatesPage theme={theme} />}
+          {page === 6 && <CouponsPage theme={theme} />}
+          {page === 7 && <LinksPage theme={theme} />}
+          {page === 8 && <PlansPage theme={theme} />}
+          {page === 9 && <WithdrawPage theme={theme} />}
+          {page === 10 && <RatesPage theme={theme} />}
         </div>
       </div>
     </div>
