@@ -411,3 +411,51 @@ export function MobileAppScreen({ name, color }: BrandProps) {
     </div>
   );
 }
+
+/**
+ * Small-screen composition: the web dashboard enlarged and cropped, with the
+ * mobile app overlapping its bottom-right corner.
+ */
+export function MobileComposite({ name, color }: BrandProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(300);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => setWidth(el.clientWidth);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Show ~55% of the dashboard width, so it renders larger than a fit-to-width view.
+  const narrow = width < 460;
+  const webScale = width / (WEB_SCREEN.width * (narrow ? 0.4 : 0.55));
+  const phoneScale = Math.min(0.8, Math.max(0.5, (width * (narrow ? 0.5 : 0.58)) / PHONE_SCREEN.width));
+  const webHeight = WEB_SCREEN.height * webScale;
+  const phoneHeight = PHONE_SCREEN.height * phoneScale;
+  const height = Math.max(webHeight * (narrow ? 0.66 : 0.82), phoneHeight) + 24;
+
+  return (
+    <div
+      ref={ref}
+      className="relative w-full overflow-hidden rounded-[28px]"
+      style={{ height }}
+    >
+      <div
+        className="absolute left-0 top-0 origin-top-left"
+        style={{ width: WEB_SCREEN.width, height: WEB_SCREEN.height, transform: `scale(${webScale})` }}
+      >
+        <WebDashboardScreen name={name} color={color} />
+      </div>
+      <div
+        className="absolute bottom-0 right-1 origin-bottom-right"
+        style={{ width: PHONE_SCREEN.width, height: PHONE_SCREEN.height, transform: `scale(${phoneScale})` }}
+      >
+        <MobileAppScreen name={name} color={color} />
+      </div>
+    </div>
+  );
+}
