@@ -36,6 +36,10 @@ const support = [
     label: "Contato",
     link: "/contato",
   },
+  {
+    label: "White Label",
+    link: "/white-label",
+  },
 ];
 
 export function PolicyAndSupport() {
