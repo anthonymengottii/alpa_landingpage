@@ -24,9 +24,65 @@ import {
   Trophy,
   Users,
 } from "lucide-react";
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+/** Picks black or white text depending on the background luminance. */
+export function readableOn(hex: string) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex);
+  if (!m) return "#ffffff";
+  const n = Number.parseInt(m[1], 16);
+  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    const c = v / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55 ? "#111111" : "#ffffff";
+}
+
+/** Brand color usable as text on white: darkens light colors so links stay readable. */
+function textOnWhite(color: string) {
+  return readableOn(color) === "#111111" ? dark(color) : color;
+}
+
+/** Brand mark: the visitor's logo when provided, otherwise the Alpa icon on the brand color. */
+function BrandMark({
+  color,
+  logoUrl,
+  size,
+  icon,
+}: {
+  color: string;
+  logoUrl?: string | null;
+  size: string;
+  icon: string;
+}) {
+  if (logoUrl) {
+    return (
+      // biome-ignore lint/performance/noImgElement: local object URL chosen by the visitor
+      <img
+        src={logoUrl}
+        alt=""
+        className={`${size} shrink-0 rounded-[inherit] bg-white object-contain ring-1 ring-black/5`}
+      />
+    );
+  }
+  return (
+    <span
+      className={`${size} flex shrink-0 items-center justify-center rounded-[inherit] transition-colors duration-500`}
+      style={{ backgroundColor: color }}
+    >
+      <LogoIcon className={`${icon} [&_path]:fill-[var(--on)]`} />
+    </span>
+  );
+}
 
 export interface BrandProps {
+  logoUrl?: string | null;
   name: string;
   color: string;
 }
@@ -171,6 +227,7 @@ export const WEB_SCREEN = { width: 1040, height: 640 };
 export function WebDashboardScreen({
   name,
   color,
+  logoUrl,
   bleedRight = false,
 }: BrandProps & { bleedRight?: boolean }) {
   const darkColor = dark(color);
@@ -186,14 +243,17 @@ export function WebDashboardScreen({
       className={`flex overflow-hidden bg-white text-gray-900 ${
         bleedRight ? "rounded-l-[28px]" : "rounded-[28px] shadow-2xl"
       }`}
-      style={{ width: WEB_SCREEN.width, height: WEB_SCREEN.height }}
+      style={
+        {
+          width: WEB_SCREEN.width,
+          height: WEB_SCREEN.height,
+          "--on": readableOn(color),
+        } as CSSProperties
+      }
     >
       <aside className="flex w-16 shrink-0 flex-col items-center gap-3 border-r border-gray-100 py-4">
-        <span
-          className="flex size-9 items-center justify-center rounded-xl transition-colors duration-500"
-          style={{ backgroundColor: color }}
-        >
-          <LogoIcon className="size-4 [&_path]:fill-white" />
+        <span className="flex size-9 rounded-xl">
+          <BrandMark color={color} logoUrl={logoUrl} size="size-9" icon="size-4" />
         </span>
         <span className="my-1 h-px w-8 bg-gray-200" />
         <span
@@ -211,8 +271,8 @@ export function WebDashboardScreen({
           </span>
         ))}
         <span
-          className="mt-auto flex size-9 items-center justify-center rounded-full text-[11px] font-bold text-white transition-colors duration-500"
-          style={{ backgroundColor: color }}
+          className="mt-auto flex size-9 items-center justify-center rounded-full text-[11px] font-bold transition-colors duration-500"
+          style={{ backgroundColor: color, color: readableOn(color) }}
         >
           JO
         </span>
@@ -260,7 +320,7 @@ export function WebDashboardScreen({
                 </p>
                 <p
                   className="flex h-4 items-center gap-1 text-xs font-semibold transition-colors duration-500"
-                  style={{ color }}
+                  style={{ color: textOnWhite(color) }}
                 >
                   {cta}
                   {cta && <ChevronRight className="size-3" />}
@@ -276,7 +336,7 @@ export function WebDashboardScreen({
                 className="rounded-lg px-4 py-2 font-medium transition-colors duration-500"
                 style={
                   i === 4
-                    ? { backgroundColor: color, color: "#fff" }
+                    ? { backgroundColor: color, color: readableOn(color) }
                     : { backgroundColor: "#fff", color: "#374151" }
                 }
               >
@@ -284,8 +344,8 @@ export function WebDashboardScreen({
               </span>
             ))}
             <span
-              className="flex items-center gap-1.5 rounded-lg px-4 py-2 font-medium text-white transition-colors duration-500"
-              style={{ backgroundColor: color }}
+              className="flex items-center gap-1.5 rounded-lg px-4 py-2 font-medium transition-colors duration-500"
+              style={{ backgroundColor: color, color: readableOn(color) }}
             >
               <Calendar className="size-3.5" /> 26/09/2026 - 25/10/2026
             </span>
@@ -331,13 +391,19 @@ export function WebDashboardScreen({
 
 export const PHONE_SCREEN = { width: 290, height: 590 };
 
-export function MobileAppScreen({ name, color }: BrandProps) {
+export function MobileAppScreen({ name, color, logoUrl }: BrandProps) {
   const darkColor = dark(color);
 
   return (
     <div
       className="relative overflow-hidden rounded-[46px] border-[7px] border-[#1c1410] bg-[#1c1410] shadow-2xl"
-      style={{ width: PHONE_SCREEN.width, height: PHONE_SCREEN.height }}
+      style={
+        {
+          width: PHONE_SCREEN.width,
+          height: PHONE_SCREEN.height,
+          "--on": readableOn(color),
+        } as CSSProperties
+      }
     >
       <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-[#1c1410]" />
       <div className="flex h-full flex-col overflow-hidden rounded-[38px] bg-gray-100 text-gray-900">
@@ -349,11 +415,8 @@ export function MobileAppScreen({ name, color }: BrandProps) {
         <div className="flex items-center gap-3 bg-white px-4 pb-3">
           <Menu className="size-5" />
           <span className="flex items-center gap-1.5 text-xs font-bold">
-            <span
-              className="flex size-5 items-center justify-center rounded-md transition-colors duration-500"
-              style={{ backgroundColor: color }}
-            >
-              <LogoIcon className="size-2.5 [&_path]:fill-white" />
+            <span className="flex size-5 rounded-md">
+              <BrandMark color={color} logoUrl={logoUrl} size="size-5" icon="size-2.5" />
             </span>
             <span className="max-w-[90px] truncate">{name || "Sua Marca"}</span>
           </span>
@@ -386,7 +449,7 @@ export function MobileAppScreen({ name, color }: BrandProps) {
             </p>
             <p
               className="mt-1 flex items-center gap-1 text-xs font-semibold transition-colors duration-500"
-              style={{ color }}
+              style={{ color: textOnWhite(color) }}
             >
               Ver relatório <ArrowRight className="size-3" />
             </p>
@@ -399,7 +462,7 @@ export function MobileAppScreen({ name, color }: BrandProps) {
                 className="rounded-xl px-3.5 py-2 font-medium transition-colors duration-500"
                 style={
                   i === 1
-                    ? { backgroundColor: color, color: "#fff" }
+                    ? { backgroundColor: color, color: readableOn(color) }
                     : { backgroundColor: "#fff", color: "#374151" }
                 }
               >
@@ -422,7 +485,7 @@ export function MobileAppScreen({ name, color }: BrandProps) {
  * Small-screen composition: the web dashboard enlarged and cropped, with the
  * mobile app overlapping its bottom-right corner.
  */
-export function MobileComposite({ name, color }: BrandProps) {
+export function MobileComposite({ name, color, logoUrl }: BrandProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(300);
 
@@ -454,13 +517,13 @@ export function MobileComposite({ name, color }: BrandProps) {
         className="absolute left-0 top-0 origin-top-left"
         style={{ width: WEB_SCREEN.width, height: WEB_SCREEN.height, transform: `scale(${webScale})` }}
       >
-        <WebDashboardScreen name={name} color={color} bleedRight />
+        <WebDashboardScreen name={name} color={color} logoUrl={logoUrl} bleedRight />
       </div>
       <div
         className="absolute bottom-0 right-3 origin-bottom-right"
         style={{ width: PHONE_SCREEN.width, height: PHONE_SCREEN.height, transform: `scale(${phoneScale})` }}
       >
-        <MobileAppScreen name={name} color={color} />
+        <MobileAppScreen name={name} color={color} logoUrl={logoUrl} />
       </div>
     </div>
   );

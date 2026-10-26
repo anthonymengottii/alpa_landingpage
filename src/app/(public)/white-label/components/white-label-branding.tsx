@@ -13,14 +13,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { Check, MousePointerClick } from "lucide-react";
-import { useState } from "react";
+import { Check, ImagePlus, MousePointerClick, Palette, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import {
   MobileAppScreen,
   MobileComposite,
   ScaledFrame,
   WEB_SCREEN,
   WebDashboardScreen,
+  readableOn,
   slugify,
 } from "./white-label-screens";
 
@@ -32,7 +33,10 @@ const palette = [
   { name: "Rosa", value: "#DB2777" },
 ];
 
-const extras = ["Logo", "Banner de login", "SEO", "Domínio próprio"];
+const extras = ["Banner de login", "SEO", "Domínio próprio"];
+
+const LOGO_TYPES = ["image/png", "image/jpeg", "image/webp", "image/svg+xml"];
+const LOGO_MAX_BYTES = 2 * 1024 * 1024;
 
 const cards = [
   {
@@ -57,7 +61,41 @@ const cards = [
 export function WhiteLabelBranding() {
   const [name, setName] = useState("Sua Marca");
   const [color, setColor] = useState(palette[0].value);
-  const colorName = palette.find((p) => p.value === color)?.name;
+  const isCustom = !palette.some((p) => p.value === color);
+  const colorName = isCustom ? color.toUpperCase() : palette.find((p) => p.value === color)?.name;
+  const checkColor = readableOn(color);
+
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
+  const logoRef = useRef<string | null>(null);
+
+  // Keep the object URL in a ref so it is always revoked on replace/unmount.
+  useEffect(() => {
+    return () => {
+      if (logoRef.current) URL.revokeObjectURL(logoRef.current);
+    };
+  }, []);
+
+  function setLogo(next: string | null) {
+    if (logoRef.current) URL.revokeObjectURL(logoRef.current);
+    logoRef.current = next;
+    setLogoUrl(next);
+  }
+
+  function handleLogo(file: File | undefined) {
+    if (!file) return;
+    if (!LOGO_TYPES.includes(file.type)) {
+      setLogoError("Use PNG, JPG, SVG ou WebP.");
+      return;
+    }
+    if (file.size > LOGO_MAX_BYTES) {
+      setLogoError("O arquivo deve ter até 2 MB.");
+      return;
+    }
+    setLogoError("");
+    setLogo(URL.createObjectURL(file));
+  }
 
   return (
     <Section className="pb-20 md:pb-40" id="estudio">
@@ -78,8 +116,8 @@ export function WhiteLabelBranding() {
             className="pointer-events-none absolute -right-16 -top-20 size-[420px] opacity-[0.12] [&_path]:fill-foreground"
           />
 
-          <div className="relative grid grid-cols-1 gap-6 rounded-[32px] bg-[#FFF8F0] p-5 text-foreground-invert shadow-xl md:p-7 xl:grid-cols-[1fr_1fr_1fr] xl:gap-0 xl:divide-x xl:divide-foreground-invert/10">
-            <div className="flex flex-col gap-3 xl:pr-7">
+          <div className="relative grid grid-cols-1 gap-6 rounded-[32px] bg-[#FFF8F0] p-5 text-foreground-invert shadow-xl md:p-7 xl:grid-cols-[1.1fr_1fr_1.2fr_0.9fr] xl:gap-0 xl:divide-x xl:divide-foreground-invert/10">
+            <div className="flex flex-col gap-3 xl:pr-6">
               <label
                 htmlFor="wl-name"
                 className="text-xs font-bold uppercase tracking-wide text-foreground-invert/60"
@@ -95,14 +133,78 @@ export function WhiteLabelBranding() {
               />
             </div>
 
-            <div className="flex flex-col gap-3 xl:px-7">
+            <div className="flex flex-col gap-3 xl:px-6">
+              <span className="text-xs font-bold uppercase tracking-wide text-foreground-invert/60">
+                Logo
+              </span>
+              <input
+                ref={fileRef}
+                type="file"
+                accept={LOGO_TYPES.join(",")}
+                className="sr-only"
+                aria-label="Enviar logo"
+                onChange={(e) => {
+                  handleLogo(e.target.files?.[0]);
+                  e.target.value = "";
+                }}
+              />
+              {logoUrl ? (
+                <div className="flex items-center gap-3 rounded-2xl bg-foreground-invert/5 p-2.5">
+                  {/* biome-ignore lint/performance/noImgElement: local object URL chosen by the visitor */}
+                  <img
+                    src={logoUrl}
+                    alt="Seu logo"
+                    className="size-11 rounded-xl bg-white object-contain ring-1 ring-black/5"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileRef.current?.click()}
+                    className="flex-1 cursor-pointer text-start text-xs font-semibold hover:underline"
+                  >
+                    Trocar logo
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Remover logo"
+                    onClick={() => {
+                      setLogo(null);
+                      setLogoError("");
+                    }}
+                    className="flex size-8 cursor-pointer items-center justify-center rounded-full hover:bg-foreground-invert/10"
+                  >
+                    <X className="size-4" />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => fileRef.current?.click()}
+                  className="flex cursor-pointer items-center gap-3 rounded-2xl border-2 border-dashed border-foreground-invert/20 px-4 py-3 text-start transition-colors hover:border-primary hover:bg-primary/5"
+                >
+                  <ImagePlus className="size-5 shrink-0" />
+                  <span className="flex flex-col leading-tight">
+                    <span className="text-sm font-semibold">Enviar logo</span>
+                    <span className="text-[11px] text-foreground-invert/60">
+                      Fica só no seu navegador
+                    </span>
+                  </span>
+                </button>
+              )}
+              {logoError && (
+                <span role="alert" className="text-xs font-semibold text-red-600">
+                  {logoError}
+                </span>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-3 xl:px-6">
               <span className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-foreground-invert/60">
                 Cor primária
                 <span className="normal-case tracking-normal text-foreground-invert">
                   {colorName}
                 </span>
               </span>
-              <div className="flex gap-2.5">
+              <div className="flex flex-wrap gap-2.5">
                 {palette.map(({ name: label, value }) => (
                   <button
                     key={value}
@@ -111,21 +213,56 @@ export function WhiteLabelBranding() {
                     aria-pressed={color === value}
                     onClick={() => setColor(value)}
                     className={cn(
-                      "flex size-11 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110",
+                      "flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110",
                       color === value &&
                         "ring-[3px] ring-foreground-invert ring-offset-2 ring-offset-[#FFF8F0]",
                     )}
                     style={{ backgroundColor: value }}
                   >
                     {color === value && (
-                      <Check className="size-5 stroke-3 stroke-white" />
+                      <Check
+                        className="size-5 stroke-3"
+                        style={{ stroke: checkColor }}
+                      />
                     )}
                   </button>
                 ))}
+                <label
+                  title="Escolher outra cor"
+                  className={cn(
+                    "relative flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full transition-all duration-300 hover:scale-110 focus-within:ring-[3px] focus-within:ring-primary/50",
+                    isCustom &&
+                      "ring-[3px] ring-foreground-invert ring-offset-2 ring-offset-[#FFF8F0]",
+                  )}
+                  style={
+                    isCustom
+                      ? { backgroundColor: color }
+                      : {
+                          background:
+                            "conic-gradient(#ff3d02, #facc15, #16a34a, #2563eb, #7c3aed, #db2777, #ff3d02)",
+                        }
+                  }
+                >
+                  {isCustom ? (
+                    <Check
+                      className="size-5 stroke-3"
+                      style={{ stroke: checkColor }}
+                    />
+                  ) : (
+                    <Palette className="size-5 stroke-white drop-shadow" />
+                  )}
+                  <input
+                    type="color"
+                    value={color}
+                    aria-label="Escolher outra cor"
+                    onChange={(e) => setColor(e.target.value)}
+                    className="absolute inset-0 size-full cursor-pointer opacity-0"
+                  />
+                </label>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 xl:pl-7">
+            <div className="flex flex-col gap-3 xl:pl-6">
               <span className="text-xs font-bold uppercase tracking-wide text-foreground-invert/60">
                 Também personalizável
               </span>
@@ -148,24 +285,29 @@ export function WhiteLabelBranding() {
 
           <p className="relative -mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground-invert/70 xl:hidden">
             <MousePointerClick className="size-4" />
-            Escolha uma cor para ver a mudança
+            Escolha uma cor ou envie seu logo
           </p>
 
           <div className="relative flex flex-col items-center gap-8">
             <div className="-mr-5 w-[calc(100%+1.25rem)] md:-mr-10 md:w-[calc(100%+2.5rem)] xl:hidden">
-              <MobileComposite name={name} color={color} />
+              <MobileComposite name={name} color={color} logoUrl={logoUrl} />
             </div>
 
             <div className="hidden w-full xl:-mr-10 xl:block xl:w-[calc(100%+2.5rem)] xl:self-start">
               <ScaledFrame {...WEB_SCREEN} maxScale={1.3}>
-                <WebDashboardScreen name={name} color={color} bleedRight />
+                <WebDashboardScreen
+                  name={name}
+                  color={color}
+                  logoUrl={logoUrl}
+                  bleedRight
+                />
               </ScaledFrame>
               <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70">
                 app.{slugify(name)}.com
               </p>
             </div>
             <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.85]">
-              <MobileAppScreen name={name} color={color} />
+              <MobileAppScreen name={name} color={color} logoUrl={logoUrl} />
             </div>
           </div>
         </div>
