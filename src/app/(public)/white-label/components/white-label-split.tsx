@@ -4,6 +4,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/section";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
 
 interface SplitSectionProps {
@@ -36,7 +37,7 @@ export function SplitSection({
           direction === "right" && "lg:flex-row-reverse",
         )}
       >
-        <Reveal y={0} x={fromX} className="w-full max-w-[560px]">
+        <Reveal y={0} x={fromX} className="w-full max-w-[620px]">
           {visual}
         </Reveal>
 
@@ -107,6 +108,63 @@ export function Pill({
     <div
       className={cn(
         "rounded-[28px] bg-[#FFF8F0] p-4 text-foreground-invert shadow-xl",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+/** Browser window around a real system screenshot. */
+export function ScreenFrame({
+  src,
+  alt,
+  url,
+  className,
+}: {
+  src: StaticImageData;
+  alt: string;
+  url: string;
+  className?: string;
+}) {
+  return (
+    <figure
+      className={cn(
+        "overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10",
+        className,
+      )}
+    >
+      <div className="flex items-center gap-3 border-b border-black/5 bg-[#F3F4F6] px-4 py-2.5">
+        <span className="flex gap-1.5">
+          <span className="size-2.5 rounded-full bg-black/15" />
+          <span className="size-2.5 rounded-full bg-black/15" />
+          <span className="size-2.5 rounded-full bg-black/15" />
+        </span>
+        <span className="truncate rounded-full bg-white px-4 py-1 text-[11px] text-gray-500">
+          {url}
+        </span>
+      </div>
+      <Image src={src} alt={alt} className="h-auto w-full" sizes="720px" />
+    </figure>
+  );
+}
+
+/** Colored stage where the screenshot bleeds off the bottom/right edges. */
+export function ScreenStage({
+  tone = "primary",
+  children,
+  className,
+}: {
+  tone?: "primary" | "accent";
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative h-[340px] overflow-hidden rounded-[48px] pl-6 pt-6 sm:h-[470px] sm:pl-10 sm:pt-10",
+        tone === "primary" ? "bg-primary" : "bg-accent",
         className,
       )}
     >

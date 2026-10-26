@@ -12,13 +12,57 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CircleDollarSign, Percent, ShoppingBag, Tag } from "lucide-react";
-import { Pill, SplitSection, Stage } from "./white-label-split";
+import affiliatesImg from "@/assets/system/affiliates.webp";
+import apiImg from "@/assets/system/api.webp";
+import checkoutImg from "@/assets/system/checkout.webp";
+import transactionsImg from "@/assets/system/transactions.webp";
+import webhooksImg from "@/assets/system/webhooks.webp";
+import withdrawImg from "@/assets/system/withdraw.webp";
+import { Percent, Tag } from "lucide-react";
+import { Pill, ScreenFrame, ScreenStage, SplitSection } from "./white-label-split";
+
+const bleed = "w-[114%] max-w-none";
+
+export function SalesSection() {
+  return (
+    <SplitSection
+      id="vendas"
+      label="Operação"
+      title="Acompanhe cada venda em tempo real."
+      description="Uma visão clara de todas as transações, com filtros e exportação."
+      bullets={[
+        "Filtros por status e meio de pagamento",
+        "Exportação dos dados em CSV",
+        "Reembolsos direto pelo painel",
+      ]}
+      visual={
+        <ScreenStage tone="accent">
+          <ScreenFrame
+            src={transactionsImg}
+            alt="Tela de transações do painel"
+            url="app.suamarca.com/transacoes"
+            className={bleed}
+          />
+          <Pill className="absolute bottom-6 left-6 flex items-center gap-3 py-3 sm:bottom-10 sm:left-10">
+            <span className="flex size-10 items-center justify-center rounded-full bg-primary">
+              <CheckIcon />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[11px] text-accent">Venda aprovada</span>
+              <span className="text-base font-bold">+ R$ 297,00</span>
+            </span>
+          </Pill>
+        </ScreenStage>
+      }
+    />
+  );
+}
 
 export function CheckoutSection() {
   return (
     <SplitSection
       id="checkout"
+      direction="right"
       label="Checkout"
       title="Um checkout com a sua cara, pronto para converter."
       description="Monte o layout de cada link de pagamento e aumente o ticket médio com ofertas na hora da compra."
@@ -28,67 +72,31 @@ export function CheckoutSection() {
         "Recuperação de carrinho abandonado",
       ]}
       visual={
-        <Stage>
-          <Pill className="flex flex-col gap-4 p-5 sm:p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="flex size-11 items-center justify-center rounded-2xl bg-primary">
-                  <ShoppingBag className="size-5 stroke-white" />
-                </span>
-                <div className="flex flex-col leading-tight">
-                  <span className="text-sm font-bold">Curso de Marketing</span>
-                  <span className="text-xs text-accent">Acesso vitalício</span>
-                </div>
-              </div>
-              <span className="text-lg font-bold">R$ 297,00</span>
-            </div>
-
-            <div className="grid grid-cols-3 gap-2 text-center text-xs font-bold">
-              <span className="rounded-2xl bg-primary py-3 text-white">PIX</span>
-              <span className="rounded-2xl bg-foreground-invert/10 py-3">
-                Cartão
-              </span>
-              <span className="rounded-2xl bg-foreground-invert/10 py-3">
-                Boleto
-              </span>
-            </div>
-
-            <div className="flex items-center justify-between rounded-2xl border border-dashed border-primary/50 px-4 py-3 text-xs font-semibold">
-              <span className="flex items-center gap-2">
-                <Tag className="size-4 stroke-primary" /> Cupom DESC10
-              </span>
-              <span className="text-primary">- R$ 29,70</span>
-            </div>
-
-            <span className="rounded-full bg-foreground-invert py-3.5 text-center text-sm font-bold text-foreground">
-              Pagar com PIX
+        <ScreenStage>
+          <ScreenFrame
+            src={checkoutImg}
+            alt="Checkout público com a marca do cliente"
+            url="checkout.suamarca.com/pay/curso-marketing"
+            className={bleed}
+          />
+          <Pill className="absolute bottom-6 left-6 flex items-center gap-3 py-3 sm:bottom-10 sm:left-10">
+            <span className="flex size-10 items-center justify-center rounded-full bg-primary">
+              <Tag className="size-4 stroke-white" />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[11px] text-accent">Cupom DESC10</span>
+              <span className="text-base font-bold">- R$ 29,70</span>
             </span>
           </Pill>
-
-          <Pill className="ml-auto flex w-[78%] items-center gap-3 py-3">
-            <span className="flex size-9 items-center justify-center rounded-xl bg-primary">
-              <CheckIcon />
-            </span>
-            <span className="text-xs font-semibold leading-tight">
-              Oferta adicionada: E-book por R$ 19,90
-            </span>
-          </Pill>
-        </Stage>
+        </ScreenStage>
       }
     />
   );
 }
 
 export function GrowthSection() {
-  const rows = [
-    ["Curso de Marketing Digital", "30%"],
-    ["Ebook Finanças Pessoais", "R$ 15,00"],
-    ["Mentoria em Vendas", "25%"],
-  ];
-
   return (
     <SplitSection
-      direction="right"
       label="Crescimento"
       title="Afiliados e recorrência para escalar as vendas."
       description="Ferramentas para vender mais e fidelizar, sem montar tudo do zero."
@@ -98,41 +106,23 @@ export function GrowthSection() {
         "Indique e Ganhe e programa de recompensas",
       ]}
       visual={
-        <Stage tone="accent">
-          <Pill className="flex flex-col gap-3 p-5">
-            <span className="text-sm font-bold">Marketplace de afiliados</span>
-            {rows.map(([product, commission]) => (
-              <div
-                key={product}
-                className="flex items-center justify-between rounded-2xl bg-foreground-invert/5 px-4 py-3"
-              >
-                <span className="text-xs font-semibold">{product}</span>
-                <span className="rounded-full bg-primary px-3 py-1 text-[11px] font-bold text-white">
-                  {commission}
-                </span>
-              </div>
-            ))}
+        <ScreenStage tone="accent">
+          <ScreenFrame
+            src={affiliatesImg}
+            alt="Marketplace de afiliados do painel"
+            url="app.suamarca.com/afiliados"
+            className={bleed}
+          />
+          <Pill className="absolute bottom-6 left-6 flex items-center gap-3 py-3 sm:bottom-10 sm:left-10">
+            <span className="flex size-10 items-center justify-center rounded-full bg-primary">
+              <Percent className="size-4 stroke-white" />
+            </span>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[11px] text-accent">Comissão creditada</span>
+              <span className="text-base font-bold">+ R$ 89,10</span>
+            </span>
           </Pill>
-
-          <div className="grid grid-cols-2 gap-4">
-            <Pill className="flex flex-col gap-1 p-4">
-              <span className="text-[11px] text-accent">MRR</span>
-              <span className="text-xl font-bold">R$ 12.480</span>
-              <span className="text-[11px] font-semibold text-primary">
-                churn 2,1%
-              </span>
-            </Pill>
-            <Pill className="flex items-center gap-3 p-4">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary">
-                <Percent className="size-4 stroke-white" />
-              </span>
-              <span className="flex flex-col leading-tight">
-                <span className="text-[11px] text-accent">Comissão</span>
-                <span className="text-sm font-bold">+ R$ 89,10</span>
-              </span>
-            </Pill>
-          </div>
-        </Stage>
+        </ScreenStage>
       }
     />
   );
@@ -141,6 +131,7 @@ export function GrowthSection() {
 export function FinanceSection() {
   return (
     <SplitSection
+      direction="right"
       label="Financeiro"
       title="Saldo, saques e antecipação sob controle."
       description="Carteira digital com confirmação de segurança em cada movimentação."
@@ -150,61 +141,37 @@ export function FinanceSection() {
         "Limites por empresa",
       ]}
       visual={
-        <Stage>
-          <Pill className="flex flex-col gap-4 p-5 sm:p-6">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-accent">Saldo disponível</span>
-              <span className="flex size-9 items-center justify-center rounded-full bg-primary">
-                <CircleDollarSign className="size-5 stroke-white" />
-              </span>
-            </div>
-            <span className="text-3xl font-bold">R$ 48.920,00</span>
-            <div className="grid grid-cols-2 gap-2 text-center text-xs font-bold">
-              <span className="rounded-full bg-primary py-3 text-white">
-                Sacar
-              </span>
-              <span className="rounded-full bg-foreground-invert/10 py-3">
-                Antecipar
-              </span>
-            </div>
-          </Pill>
-
-          <Pill className="flex flex-col gap-3 p-5">
-            <span className="text-xs font-semibold">
+        <ScreenStage>
+          <ScreenFrame
+            src={withdrawImg}
+            alt="Tela de saque e extrato do painel"
+            url="app.suamarca.com/saque"
+            className={bleed}
+          />
+          <Pill className="absolute bottom-6 left-6 flex flex-col gap-2 py-3 sm:bottom-10 sm:left-10">
+            <span className="text-[11px] font-semibold">
               Código de confirmação enviado por e-mail
             </span>
-            <div className="flex gap-2">
+            <span className="flex gap-1.5">
               {["4", "8", "1", "7", "", ""].map((digit, i) => (
                 <span
                   key={i}
-                  className="flex h-11 flex-1 items-center justify-center rounded-xl bg-foreground-invert/10 text-base font-bold"
+                  className="flex h-8 w-7 items-center justify-center rounded-lg bg-foreground-invert/10 text-sm font-bold"
                 >
                   {digit}
                 </span>
               ))}
-            </div>
+            </span>
           </Pill>
-        </Stage>
+        </ScreenStage>
       }
     />
   );
 }
 
-const codeLines = [
-  ["const ", "tx", " = await alpa.transactions.create({"],
-  ["  product: ", "'Curso Node.js'", ","],
-  ["  amountCents: ", "19900", ","],
-  ["  paymentMethod: ", "'PIX'", ","],
-  ["  clientEmail: ", "'joao@exemplo.com'", ","],
-  ["});", "", ""],
-];
-
 export function IntegrationSection() {
-  const events = ["payment.paid", "payment.failed", "payment.refunded"];
-
   return (
     <SplitSection
-      direction="right"
       label="Integração"
       title="API, SDKs e webhooks para conectar tudo."
       description="Integre a sua plataforma com lojas e sistemas em poucas linhas de código."
@@ -214,39 +181,20 @@ export function IntegrationSection() {
         "Integração nativa com Shopify",
       ]}
       visual={
-        <div aria-hidden="true" className="flex flex-col gap-4">
-          <div className="overflow-hidden rounded-[32px] bg-card">
-            <div className="flex items-center gap-2 border-b border-border/20 px-5 py-3">
-              <span className="size-2.5 rounded-full bg-primary" />
-              <span className="size-2.5 rounded-full bg-accent" />
-              <span className="size-2.5 rounded-full bg-foreground/30" />
-              <span className="ml-2 text-xs text-foreground/60">
-                alpa-js · criar cobrança
-              </span>
-            </div>
-            <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-6">
-              {codeLines.map(([a, b, c], i) => (
-                <div key={i}>
-                  <span className="text-foreground/60">{a}</span>
-                  <span className="text-primary">{b}</span>
-                  <span className="text-foreground/60">{c}</span>
-                </div>
-              ))}
-            </pre>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {events.map((event) => (
-              <span
-                key={event}
-                className="flex items-center gap-2 rounded-full bg-card px-4 py-2 font-mono text-xs"
-              >
-                <span className="size-2 rounded-full bg-primary" />
-                {event}
-              </span>
-            ))}
-          </div>
-        </div>
+        <ScreenStage tone="accent">
+          <ScreenFrame
+            src={apiImg}
+            alt="Tela de credenciais de API do painel"
+            url="app.suamarca.com/api"
+            className="w-[100%] max-w-none"
+          />
+          <ScreenFrame
+            src={webhooksImg}
+            alt="Tela de webhooks do painel"
+            url="app.suamarca.com/webhooks"
+            className="absolute bottom-0 right-0 w-[68%] translate-x-6 translate-y-6 sm:translate-x-10 sm:translate-y-10"
+          />
+        </ScreenStage>
       }
     />
   );

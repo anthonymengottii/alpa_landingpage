@@ -9,6 +9,7 @@ import {
   FinanceSection,
   GrowthSection,
   IntegrationSection,
+  SalesSection,
   SecuritySection,
 } from "./white-label-sections";
 import { WhiteLabelHero } from "./white-label-hero";
@@ -23,6 +24,7 @@ export function WhiteLabelPage() {
       <WhiteLabelStats />
       <WhiteLabelBranding />
       <WhiteLabelMethods />
+      <SalesSection />
       <CheckoutSection />
       <GrowthSection />
       <FinanceSection />
