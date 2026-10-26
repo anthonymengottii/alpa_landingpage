@@ -1,7 +1,8 @@
 "use client";
 
 import { WhiteLabelBranding } from "./white-label-branding";
-import { WhiteLabelCta } from "./white-label-cta";
+import { RequestFees } from "../../(landing-page)/components/request-fees";
+import { WHITE_LABEL_WHATSAPP } from "./white-label-links";
 import { Faq } from "@/components/faq";
 import { whiteLabelDoubts } from "./white-label-doubts";
 import {
@@ -31,7 +32,17 @@ export function WhiteLabelPage() {
       <IntegrationSection />
       <SecuritySection />
       <WhiteLabelSteps />
-      <WhiteLabelCta />
+      <RequestFees
+        id="contato-white-label"
+        eyebrow="Seu gateway, sua marca."
+        title="Pronto para lançar o seu próprio gateway?"
+        description="Fale com o nosso time e receba uma proposta para a sua operação white label."
+        cta={{
+          label: "Falar com um especialista",
+          href: WHITE_LABEL_WHATSAPP,
+          target: "_blank",
+        }}
+      />
       <Faq items={whiteLabelDoubts} />
     </>
   );

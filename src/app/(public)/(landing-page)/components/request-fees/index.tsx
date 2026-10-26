@@ -8,9 +8,26 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export function RequestFees() {
+interface RequestFeesProps {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  cta?: { label: string; href: string; target?: "_blank" };
+}
+
+export function RequestFees({
+  id = "taxas",
+  eyebrow = "Mais lucro, menos taxa.",
+  title = "Você fatura mais de 50 mil reais por mês?",
+  description = "Na Alpa você tem todos os recursos para crescer o seu negócio com tecnologia e confiança. Vem pra Alpa!",
+  cta = {
+    label: "Solicite taxas exclusivas para você",
+    href: "https://wa.me/+5511978673936",
+  },
+}: RequestFeesProps) {
   return (
-    <section className="relative w-full" id="taxas">
+    <section className="relative w-full" id={id}>
       <Image
         src={BannerImg}
         alt="banner"
@@ -62,20 +79,17 @@ export function RequestFees() {
       </motion.svg>
       <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center gap-4 px-6">
         <LogoIcon />
-        <span className="text-primary font-semibold">
-          Mais lucro, menos taxa.
-        </span>
+        <span className="text-primary font-semibold">{eyebrow}</span>
         <h1 className="text-[32px] md:text-[40px] font-bold max-w-[441px] text-center leading-12">
-          Você fatura mais de 50 mil reais por mês?
+          {title}
         </h1>
         <p className="text-base text-center max-w-md ">
-          Na Alpa você tem todos os recursos para crescer o seu negócio com
-          tecnologia e confiança. Vem pra Alpa!
+          {description}
         </p>
 
-        <CtaButton href="https://wa.me/+5511978673936" variant="primary">
+        <CtaButton href={cta.href} target={cta.target} variant="primary">
           <span className="text-sm font-bold group-hover:text-foreground-invert">
-            Solicite taxas exclusivas para você
+            {cta.label}
           </span>
           <ArrowUpRight className="stroke-icon group-hover:stroke-primary" />
         </CtaButton>
