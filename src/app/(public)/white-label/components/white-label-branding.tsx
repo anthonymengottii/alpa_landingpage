@@ -78,7 +78,7 @@ export function WhiteLabelBranding() {
       </Reveal>
 
       <Reveal>
-        <div className="flex flex-col gap-10 rounded-[48px] bg-accent p-6 md:p-10 xl:pb-24">
+        <div className="flex flex-col gap-10 overflow-hidden rounded-[48px] bg-accent p-6 md:p-10 xl:pb-24">
           <div className="grid grid-cols-1 gap-8 text-foreground-invert md:grid-cols-2 xl:grid-cols-[1fr_1fr_1.3fr]">
             <div className="flex flex-col gap-3">
               <label htmlFor="wl-name" className="text-sm font-bold">
@@ -135,19 +135,19 @@ export function WhiteLabelBranding() {
           </div>
 
           <div className="relative flex flex-col items-center gap-8">
-            <div className="w-full xl:hidden">
+            <div className="-mr-6 w-[calc(100%+1.5rem)] md:-mr-10 md:w-[calc(100%+2.5rem)] xl:hidden">
               <MobileComposite name={name} color={color} />
             </div>
 
-            <div className="hidden w-full xl:block xl:w-[82%] xl:self-start">
-              <ScaledFrame {...WEB_SCREEN}>
-                <WebDashboardScreen name={name} color={color} />
+            <div className="hidden w-full xl:-mr-10 xl:block xl:w-[calc(100%+2.5rem)] xl:self-start">
+              <ScaledFrame {...WEB_SCREEN} maxScale={1.3}>
+                <WebDashboardScreen name={name} color={color} bleedRight />
               </ScaledFrame>
               <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70">
                 Dashboard web · app.{slugify(name)}.com
               </p>
             </div>
-            <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-2 xl:flex">
+            <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.85]">
               <MobileAppScreen name={name} color={color} />
             </div>
           </div>

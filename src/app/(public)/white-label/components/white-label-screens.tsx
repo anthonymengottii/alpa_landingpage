@@ -168,7 +168,11 @@ const railIcons = [
 
 export const WEB_SCREEN = { width: 1040, height: 640 };
 
-export function WebDashboardScreen({ name, color }: BrandProps) {
+export function WebDashboardScreen({
+  name,
+  color,
+  bleedRight = false,
+}: BrandProps & { bleedRight?: boolean }) {
   const darkColor = dark(color);
   const periods = ["Hoje", "Ontem", "Semana", "Outubro", "Últimos 30 dias"];
   const kpis = [
@@ -179,7 +183,9 @@ export function WebDashboardScreen({ name, color }: BrandProps) {
 
   return (
     <div
-      className="flex overflow-hidden rounded-[28px] bg-white text-gray-900 shadow-2xl"
+      className={`flex overflow-hidden bg-white text-gray-900 ${
+        bleedRight ? "rounded-l-[28px]" : "rounded-[28px] shadow-2xl"
+      }`}
       style={{ width: WEB_SCREEN.width, height: WEB_SCREEN.height }}
     >
       <aside className="flex w-16 shrink-0 flex-col items-center gap-3 border-r border-gray-100 py-4">
@@ -433,7 +439,7 @@ export function MobileComposite({ name, color }: BrandProps) {
   // Show ~55% of the dashboard width, so it renders larger than a fit-to-width view.
   const narrow = width < 460;
   const webScale = width / (WEB_SCREEN.width * (narrow ? 0.4 : 0.55));
-  const phoneScale = Math.min(0.8, Math.max(0.5, (width * (narrow ? 0.5 : 0.58)) / PHONE_SCREEN.width));
+  const phoneScale = Math.min(0.8, Math.max(0.42, (width * (narrow ? 0.4 : 0.48)) / PHONE_SCREEN.width));
   const webHeight = WEB_SCREEN.height * webScale;
   const phoneHeight = PHONE_SCREEN.height * phoneScale;
   const height = Math.max(webHeight * (narrow ? 0.66 : 0.82), phoneHeight) + 24;
@@ -441,17 +447,17 @@ export function MobileComposite({ name, color }: BrandProps) {
   return (
     <div
       ref={ref}
-      className="relative w-full overflow-hidden rounded-[28px]"
+      className="relative w-full overflow-hidden rounded-l-[28px]"
       style={{ height }}
     >
       <div
         className="absolute left-0 top-0 origin-top-left"
         style={{ width: WEB_SCREEN.width, height: WEB_SCREEN.height, transform: `scale(${webScale})` }}
       >
-        <WebDashboardScreen name={name} color={color} />
+        <WebDashboardScreen name={name} color={color} bleedRight />
       </div>
       <div
-        className="absolute bottom-0 right-1 origin-bottom-right"
+        className="absolute bottom-0 right-3 origin-bottom-right"
         style={{ width: PHONE_SCREEN.width, height: PHONE_SCREEN.height, transform: `scale(${phoneScale})` }}
       >
         <MobileAppScreen name={name} color={color} />
