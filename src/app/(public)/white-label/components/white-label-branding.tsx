@@ -33,8 +33,6 @@ const palette = [
   { name: "Rosa", value: "#DB2777" },
 ];
 
-const extras = ["Banner de login", "SEO", "Domínio próprio"];
-
 const LOGO_TYPES = ["image/png", "image/jpeg", "image/webp", "image/svg+xml"];
 const LOGO_MAX_BYTES = 2 * 1024 * 1024;
 
@@ -110,13 +108,13 @@ export function WhiteLabelBranding() {
       </Reveal>
 
       <Reveal>
-        <div className="relative flex flex-col gap-8 overflow-hidden rounded-[48px] bg-accent p-5 md:p-10 xl:pb-24">
+        <div className="relative flex flex-col gap-8 overflow-hidden rounded-[48px] bg-primary p-5 md:p-10 xl:pb-24">
           <LogoIcon
             aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-20 size-[420px] opacity-[0.12] [&_path]:fill-foreground"
+            className="pointer-events-none absolute -right-16 -top-20 size-[420px] opacity-[0.14] [&_path]:fill-background"
           />
 
-          <div className="relative grid grid-cols-1 gap-6 rounded-[32px] bg-[#FFF8F0] p-5 text-foreground-invert shadow-xl md:p-7 xl:grid-cols-[1.1fr_1fr_1.2fr_0.9fr] xl:gap-0 xl:divide-x xl:divide-foreground-invert/10">
+          <div className="relative grid grid-cols-1 gap-6 rounded-[32px] bg-[#FFF8F0] p-5 text-foreground-invert shadow-xl md:p-7 xl:grid-cols-[1fr_1fr_1.3fr] xl:gap-0 xl:divide-x xl:divide-foreground-invert/10">
             <div className="flex flex-col gap-3 xl:pr-6">
               <label
                 htmlFor="wl-name"
@@ -197,7 +195,7 @@ export function WhiteLabelBranding() {
               )}
             </div>
 
-            <div className="flex flex-col gap-3 xl:px-6">
+            <div className="flex flex-col gap-3 xl:pl-6">
               <span className="flex items-center justify-between text-xs font-bold uppercase tracking-wide text-foreground-invert/60">
                 Cor primária
                 <span className="normal-case tracking-normal text-foreground-invert">
@@ -262,28 +260,9 @@ export function WhiteLabelBranding() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 xl:pl-6">
-              <span className="text-xs font-bold uppercase tracking-wide text-foreground-invert/60">
-                Também personalizável
-              </span>
-              <ul className="flex flex-wrap gap-2">
-                {extras.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-2 rounded-full bg-foreground-invert/5 px-3.5 py-2 text-xs font-semibold"
-                  >
-                    <span
-                      className="size-2 rounded-full transition-colors duration-500"
-                      style={{ backgroundColor: color }}
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
-          <p className="relative -mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground-invert/70 xl:hidden">
+          <p className="relative -mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground-invert xl:hidden">
             <MousePointerClick className="size-4" />
             Escolha uma cor ou envie seu logo
           </p>
@@ -302,7 +281,7 @@ export function WhiteLabelBranding() {
                   bleedRight
                 />
               </ScaledFrame>
-              <p className="mt-3 text-center text-xs font-semibold text-foreground-invert/70">
+              <p className="mt-3 text-center text-xs font-semibold text-foreground-invert">
                 app.{slugify(name)}.com
               </p>
             </div>
