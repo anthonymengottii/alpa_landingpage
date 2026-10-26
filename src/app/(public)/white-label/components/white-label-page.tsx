@@ -1,6 +1,7 @@
 "use client";
 
 import { WhiteLabelBranding } from "./white-label-branding";
+import { GetStarted } from "../../(landing-page)/components/get-started";
 import { RequestFees } from "../../(landing-page)/components/request-fees";
 import { WHITE_LABEL_WHATSAPP } from "./white-label-links";
 import { Faq } from "@/components/faq";
@@ -41,9 +42,17 @@ export function WhiteLabelPage() {
           target: "_blank",
         }}
       />
-      <div className="pt-20 md:pt-32">
-        <Faq items={whiteLabelDoubts} />
-      </div>
+      <GetStarted
+        eyebrow="White Label"
+        title="Tenha o seu gateway de pagamentos com a sua marca."
+        description="Tecnologia, checkout e painel prontos para você operar com a sua identidade. Vem pra Alpa!"
+        cta={{
+          label: "Quero o meu white label",
+          href: WHITE_LABEL_WHATSAPP,
+          target: "_blank",
+        }}
+      />
+      <Faq items={whiteLabelDoubts} />
     </>
   );
 }
