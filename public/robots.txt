@@ -14,6 +14,12 @@ Sitemap: https://usealpa.com/sitemap.xml
 User-agent: GPTBot
 Allow: /
 
+# OpenAI — busca e navegação do ChatGPT
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
 # Perplexity AI
 User-agent: PerplexityBot
 Allow: /
@@ -22,6 +28,16 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 User-agent: anthropic-ai
+Allow: /
+
+# Anthropic — busca do Claude
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
 Allow: /
 
 # Google AI (AI Overviews / Gemini)

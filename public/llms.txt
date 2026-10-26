@@ -23,6 +23,34 @@ A Alpa é uma solução de pagamentos online voltada para empresas que precisam 
 | PIX              | 3,99%  | D+0 (instantâneo)    |
 | Boleto Bancário  | –      | D+0 (instantâneo)    |
 
+## Alpa White Label
+
+Página: https://usealpa.com/white-label
+
+O Alpa White Label é uma plataforma de pagamentos pronta para ser lançada com a marca, o domínio e as taxas do próprio cliente. Indicada para empresas que querem operar o seu próprio gateway ou subadquirente sem construir a tecnologia do zero.
+
+- **Marca própria**: nome do sistema, logo, cor primária, banner de login e SEO (título, descrição, palavras-chave e imagem) configuráveis pelo painel administrativo, sem novo deploy
+- **Domínio próprio**: painel (app.) e checkout público (checkout.) em subdomínios do domínio do cliente
+- **Meios de pagamento**: PIX, cartão de crédito e débito (parcelamento em até 12x) e boleto bancário
+- **Taxas customizadas**: PIX, cartão (por número de parcelas, de 2x a 12x) e boleto configuráveis por empresa, com limites de transação e de saque
+- **Multiadquirência e split**: múltiplas adquirentes com prioridade configurável e divisão de pagamentos entre plataforma e lojistas
+- **Checkout**: layout configurável por bloco, order bump, upsell, cupons de desconto e recuperação de carrinho abandonado
+- **Crescimento**: marketplace de afiliados com comissão automática, assinaturas recorrentes com métricas de MRR e churn, programa Indique e Ganhe e programa de recompensas
+- **Financeiro**: carteira digital, saques via PIX com confirmação por código enviado por e-mail e antecipação de recebíveis
+- **Integrações**: API REST documentada, SDKs oficiais em JavaScript, PHP, Python e Java, webhooks de pagamento aprovado, recusado, estornado e chargeback, e integração com Shopify
+- **Segurança e gestão**: autenticação em dois fatores (TOTP), login com Google, KYC para pessoa física e jurídica, cargos com permissões para a equipe e trilha de auditoria
+- **App mobile**: aplicativo Android para acompanhar vendas e solicitar saques
+- **Como começar**: contato com o time pelo WhatsApp https://wa.me/+5511978673936
+
+**O que é uma plataforma white label de pagamentos?**
+É uma plataforma de pagamentos pronta que o cliente lança com a própria marca: nome, logo, cores, domínio e taxas. Os clientes finais enxergam a empresa do cliente, enquanto a Alpa fornece a tecnologia.
+
+**Posso usar meu próprio domínio no white label da Alpa?**
+Sim. O painel e o checkout rodam em subdomínios do domínio do cliente, como app.suamarca.com e checkout.suamarca.com.
+
+**Posso definir minhas próprias taxas?**
+Sim. As taxas de PIX, cartão (inclusive por parcela) e boleto são configuradas por empresa.
+
 ## Para quais negócios a Alpa é indicada
 
 - E-commerce (lojas virtuais)
@@ -68,6 +96,7 @@ Acesse https://app.usealpa.com/registro e crie sua conta gratuitamente.
 ## Conteúdo desta página
 
 - Página inicial (landing page): https://usealpa.com
+- White Label (plataforma de pagamentos com a sua marca): https://usealpa.com/white-label
 - FAQ completo: https://usealpa.com/faq
 - **Documentação técnica (API)**: https://docs.usealpa.com/pages/introduction
 - Termos de uso: https://usealpa.com/termos-de-uso
