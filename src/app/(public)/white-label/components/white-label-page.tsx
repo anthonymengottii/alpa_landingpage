@@ -43,7 +43,9 @@ export function WhiteLabelPage() {
           target: "_blank",
         }}
       />
-      <Faq items={whiteLabelDoubts} />
+      <div className="pt-20 md:pt-32">
+        <Faq items={whiteLabelDoubts} />
+      </div>
     </>
   );
 }
