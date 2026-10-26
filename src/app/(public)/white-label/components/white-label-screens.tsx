@@ -1,6 +1,16 @@
 "use client";
 
-import { LogoIcon } from "@/assets/svg/logo-icon";
+import {
+  type BrandProps,
+  BrandMark,
+  type Theme,
+  dark,
+  readableOn,
+  slugify,
+  textOnWhite,
+  tint,
+} from "./white-label-brand";
+import { MobileAppScreen, PHONE_SCREEN } from "./white-label-mobile";
 import {
   AffiliatesPage,
   CheckoutsPage,
@@ -12,7 +22,6 @@ import {
   RatesPage,
   TransactionsPage,
   WithdrawPage,
-  type Theme,
 } from "./white-label-pages";
 import {
   Banknote,
@@ -45,76 +54,6 @@ import {
   useRef,
   useState,
 } from "react";
-
-/** Picks black or white text depending on the background luminance. */
-export function readableOn(hex: string) {
-  const m = /^#?([0-9a-f]{6})$/i.exec(hex);
-  if (!m) return "#ffffff";
-  const n = Number.parseInt(m[1], 16);
-  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
-    const c = v / 255;
-    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.55 ? "#111111" : "#ffffff";
-}
-
-/** Brand color usable as text on white: darkens light colors so links stay readable. */
-function textOnWhite(color: string) {
-  return readableOn(color) === "#111111" ? dark(color) : color;
-}
-
-/** Brand mark: the visitor's logo when provided, otherwise the Alpa icon on the brand color. */
-function BrandMark({
-  color,
-  logoUrl,
-  size,
-  icon,
-}: {
-  color: string;
-  logoUrl?: string | null;
-  size: string;
-  icon: string;
-}) {
-  if (logoUrl) {
-    return (
-      // biome-ignore lint/performance/noImgElement: local object URL chosen by the visitor
-      <img
-        src={logoUrl}
-        alt=""
-        className={`${size} shrink-0 rounded-[inherit] bg-white object-contain ring-1 ring-black/5`}
-      />
-    );
-  }
-  return (
-    <span
-      className={`${size} flex shrink-0 items-center justify-center rounded-[inherit] transition-colors duration-500`}
-      style={{ backgroundColor: color }}
-    >
-      <LogoIcon className={`${icon} [&_path]:fill-[var(--on)]`} />
-    </span>
-  );
-}
-
-export interface BrandProps {
-  logoUrl?: string | null;
-  name: string;
-  color: string;
-}
-
-export function slugify(value: string) {
-  return (
-    value
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[̀-ͯ]/g, "")
-      .replace(/[^a-z0-9]/g, "") || "suamarca"
-  );
-}
-
-const dark = (color: string) =>
-  `color-mix(in oklab, ${color} 26%, #120a06)`;
-const tint = (color: string, pct: number) =>
-  `color-mix(in srgb, ${color} ${pct}%, white)`;
 
 /** Renders children at a fixed design size and scales them to fit the container width. */
 export function ScaledFrame({
@@ -458,116 +397,6 @@ export function WebDashboardScreen({
   );
 }
 
-export const PHONE_SCREEN = { width: 290, height: 590 };
-
-export function MobileAppScreen({ name, color, logoUrl }: BrandProps) {
-  const darkColor = dark(color);
-  const brand = name || "Sua Marca";
-  const periods = ["Hoje", "Ontem", "Semana"];
-
-  return (
-    <div
-      className="relative overflow-hidden rounded-[46px] border-[7px] border-[#1c1410] bg-[#1c1410] shadow-2xl"
-      style={
-        {
-          width: PHONE_SCREEN.width,
-          height: PHONE_SCREEN.height,
-          "--on": readableOn(color),
-        } as CSSProperties
-      }
-    >
-      <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-[#1c1410]" />
-      <div className="flex h-full flex-col overflow-hidden rounded-[38px] bg-gray-100 text-gray-900">
-        <div className="bg-white px-5 pb-1 pt-3 text-[11px] font-semibold">
-          <div className="flex items-center justify-between">
-            <span>9:41</span>
-            <span className="h-2.5 w-5 rounded-sm border border-gray-800" />
-          </div>
-        </div>
-
-        <div className="flex h-12 items-center gap-3 bg-white px-4">
-          <PanelLeftOpen className="size-5 text-gray-600" />
-          <span className="flex min-w-0 items-center gap-1.5">
-            <span className="flex size-5 shrink-0 rounded-md">
-              <BrandMark color={color} logoUrl={logoUrl} size="size-5" icon="size-2.5" />
-            </span>
-            <span className="max-w-[88px] truncate text-[11px] font-bold">{brand}</span>
-          </span>
-          <span className="flex-1" />
-          <Trophy className="size-5 text-gray-600" />
-          <Eye className="size-5 text-gray-600" />
-        </div>
-
-        <div className="flex-1 overflow-hidden px-4 pt-4">
-          <h4
-            className="text-[24px] font-semibold leading-[1.15] transition-colors duration-500"
-            style={{ color: darkColor }}
-          >
-            Bem-vindo(a) de volta, João!
-          </h4>
-          <p className="mb-3 mt-1 text-[13px] text-gray-500">
-            Aqui está um resumo da sua conta hoje.
-          </p>
-
-          <div className="mb-3 rounded-2xl bg-white p-4 shadow-sm">
-            <span className="mb-3 flex size-11 items-center justify-center rounded-lg border border-gray-300 text-gray-600">
-              <DollarSign className="size-5" />
-            </span>
-            <p className="text-xs text-gray-500">Receita Total</p>
-            <p
-              className="text-[26px] font-bold leading-tight transition-colors duration-500"
-              style={{ color: darkColor }}
-            >
-              R$ 450.596,62
-            </p>
-            <p
-              className="mt-1 flex items-center gap-1 text-xs font-semibold transition-colors duration-500"
-              style={{ color: textOnWhite(color) }}
-            >
-              Ver relatório <ChevronRight className="size-3" />
-            </p>
-          </div>
-
-          <div className="mb-3 rounded-2xl bg-white p-4 shadow-sm">
-            <span className="mb-3 flex size-11 items-center justify-center rounded-lg border border-gray-300 text-gray-600">
-              <CreditCard className="size-5" />
-            </span>
-            <p className="text-xs text-gray-500">Transações</p>
-            <p
-              className="text-[26px] font-bold leading-tight transition-colors duration-500"
-              style={{ color: darkColor }}
-            >
-              3338
-            </p>
-            <p
-              className="mt-1 flex items-center gap-1 text-xs font-semibold transition-colors duration-500"
-              style={{ color: textOnWhite(color) }}
-            >
-              Ver todas <ChevronRight className="size-3" />
-            </p>
-          </div>
-
-          <div className="flex gap-2 text-[11px]">
-            {periods.map((p, i) => (
-              <span
-                key={p}
-                className="rounded-xl px-3.5 py-2 shadow-sm transition-colors duration-500"
-                style={
-                  i === 2
-                    ? { backgroundColor: color, color: readableOn(color) }
-                    : { backgroundColor: "#fff", color: "#374151" }
-                }
-              >
-                {p}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /**
  * Small-screen composition: the web dashboard enlarged and cropped, with the
  * mobile app overlapping its bottom-right corner.
@@ -615,3 +444,7 @@ export function MobileComposite({ name, color, logoUrl }: BrandProps) {
     </div>
   );
 }
+
+export { MobileAppScreen, PHONE_SCREEN, slugify };
+export { readableOn } from "./white-label-brand";
+export type { BrandProps } from "./white-label-brand";

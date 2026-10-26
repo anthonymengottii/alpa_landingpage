@@ -263,7 +263,7 @@ export function WhiteLabelBranding() {
 
           <p className="relative -mb-3 flex items-center justify-center gap-2 text-xs font-semibold text-foreground-invert xl:hidden">
             <MousePointerClick className="size-4" />
-            Mude a cor, envie seu logo e navegue pelo menu
+            Mude a cor, envie seu logo e navegue pelos menus
           </p>
 
           <div className="relative flex flex-col items-center gap-8">

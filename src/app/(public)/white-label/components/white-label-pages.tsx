@@ -17,15 +17,9 @@ import {
   Wallet,
 } from "lucide-react";
 import type { ReactNode } from "react";
+import type { Theme } from "./white-label-brand";
 
-/** Colors derived from the visitor's brand color, computed once by the screen. */
-export interface Theme {
-  color: string;
-  dark: string;
-  link: string;
-  fg: string;
-  tint: string;
-}
+export type { Theme };
 
 export function PageTitle({
   title,
