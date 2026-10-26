@@ -42,7 +42,7 @@ const items = [
 
 export function WhiteLabelMethods() {
   return (
-    <Section className="pb-20 md:pb-40">
+    <Section className="pt-20 pb-20 md:pt-32 md:pb-40">
       <Reveal className="flex flex-col items-center justify-center space-y-4 mb-10 mx-auto">
         <span className="font-semibold text-primary text-center">
           Meios de pagamento
