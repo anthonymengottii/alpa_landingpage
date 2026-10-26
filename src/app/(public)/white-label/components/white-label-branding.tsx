@@ -107,7 +107,7 @@ export function WhiteLabelBranding() {
       </Reveal>
 
       <Reveal>
-        <div className="relative flex flex-col gap-8 overflow-hidden rounded-[48px] bg-primary p-5 md:p-10 xl:pb-24">
+        <div className="relative flex flex-col gap-8 overflow-hidden rounded-[48px] bg-primary p-5 md:p-10 xl:pb-32">
           <LogoIcon
             aria-hidden="true"
             className="pointer-events-none absolute -right-16 -top-20 size-[420px] opacity-[0.14] [&_path]:fill-background"
@@ -281,7 +281,7 @@ export function WhiteLabelBranding() {
                 />
               </ScaledFrame>
             </div>
-            <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.62]">
+            <div className="hidden flex-col items-center xl:absolute xl:-bottom-24 xl:right-8 xl:flex xl:origin-bottom-right xl:scale-[0.92]">
               <MobileAppScreen name={name} color={color} logoUrl={logoUrl} />
             </div>
           </div>
