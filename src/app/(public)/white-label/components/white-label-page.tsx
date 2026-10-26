@@ -21,13 +21,13 @@ export function WhiteLabelPage() {
   return (
     <>
       <WhiteLabelHero />
-      <WhiteLabelBranding />
       <WhiteLabelMethods />
       <SalesSection />
       <CheckoutSection />
       <GrowthSection />
       <FinanceSection />
       <IntegrationSection />
+      <WhiteLabelBranding />
       <SecuritySection />
       <WhiteLabelSteps />
       <RequestFees
