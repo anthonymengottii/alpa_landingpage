@@ -22,7 +22,6 @@ import {
   WEB_SCREEN,
   WebDashboardScreen,
   readableOn,
-  slugify,
 } from "./white-label-screens";
 
 const palette = [
@@ -281,9 +280,6 @@ export function WhiteLabelBranding() {
                   bleedRight
                 />
               </ScaledFrame>
-              <p className="mt-3 text-center text-xs font-semibold text-foreground-invert">
-                app.{slugify(name)}.com
-              </p>
             </div>
             <div className="hidden flex-col items-center xl:absolute xl:-bottom-16 xl:right-6 xl:flex xl:origin-bottom-right xl:scale-[0.85]">
               <MobileAppScreen name={name} color={color} logoUrl={logoUrl} />
